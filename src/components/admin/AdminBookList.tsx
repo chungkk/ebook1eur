@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { formatPrice } from "@/lib/utils";
+import { useHydrated } from "@/hooks/useHydrated";
 
 interface Book {
   id: string;
@@ -40,6 +41,7 @@ interface Pagination {
 export default function AdminBookList() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const hydrated = useHydrated();
 
   const [books, setBooks] = useState<Book[]>([]);
   const [pagination, setPagination] = useState<Pagination | null>(null);
@@ -257,7 +259,7 @@ export default function AdminBookList() {
                   </td>
                   <td className="px-4 py-3 text-sm">{formatPrice(book.price)}</td>
                   <td className="px-4 py-3 text-sm text-ink-500">
-                    {new Date(book.createdAt).toLocaleDateString("de-DE")}
+                    {hydrated ? new Date(book.createdAt).toLocaleDateString("de-DE") : ""}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex justify-end gap-2">

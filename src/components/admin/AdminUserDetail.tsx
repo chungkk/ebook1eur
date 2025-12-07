@@ -19,6 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatPrice } from "@/lib/utils";
+import { useHydrated } from "@/hooks/useHydrated";
 
 interface UserData {
   id: string;
@@ -66,6 +67,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const hydrated = useHydrated();
 
   useEffect(() => {
     fetchUserDetail();
@@ -222,7 +224,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
               <div className="flex flex-wrap gap-4 mt-4 text-sm text-ink-500">
                 <div className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
-                  Registriert: {new Date(user.createdAt).toLocaleDateString("de-DE")}
+                  Registriert: {hydrated ? new Date(user.createdAt).toLocaleDateString("de-DE") : ""}
                 </div>
                 <span
                   className={`px-2 py-0.5 rounded ${
@@ -348,7 +350,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
                   <div className="text-right flex-shrink-0">
                     <p className="font-medium">{formatPrice(purchase.amount)}</p>
                     <p className="text-xs text-ink-400">
-                      {new Date(purchase.createdAt).toLocaleDateString("de-DE")}
+                      {hydrated ? new Date(purchase.createdAt).toLocaleDateString("de-DE") : ""}
                     </p>
                   </div>
                 </div>

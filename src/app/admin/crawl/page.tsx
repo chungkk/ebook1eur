@@ -12,6 +12,7 @@ import {
   Clock,
   BookOpen,
 } from "lucide-react";
+import { useHydrated } from "@/hooks/useHydrated";
 
 type CrawlSourceId = "ebook-de" | "hugendubel";
 
@@ -61,6 +62,7 @@ export default function CrawlPage() {
     type: "success" | "error";
     text: string;
   } | null>(null);
+  const hydrated = useHydrated();
 
   const fetchData = async () => {
     try {
@@ -213,13 +215,13 @@ export default function CrawlPage() {
           <span>
             Letzte Aktualisierung:{" "}
             <strong className="text-leather-700">
-              {new Date(currentSourceData.crawledAt).toLocaleString("de-DE", {
+              {hydrated ? new Date(currentSourceData.crawledAt).toLocaleString("de-DE", {
                 day: "2-digit",
                 month: "2-digit",
                 year: "numeric",
                 hour: "2-digit",
                 minute: "2-digit",
-              })}
+              }) : ""}
             </strong>
             {" "}({currentSourceData.totalBooks} Bücher)
           </span>
@@ -335,13 +337,13 @@ export default function CrawlPage() {
               <div className="bg-parchment-50 p-3 rounded-lg">
                 <p className="text-sm text-ink-500">Aktualisiert</p>
                 <p className="font-medium text-leather-800">
-                  {new Date(currentSourceData.crawledAt).toLocaleDateString("de-DE", {
+                  {hydrated ? new Date(currentSourceData.crawledAt).toLocaleDateString("de-DE", {
                     day: "2-digit",
                     month: "2-digit",
                     year: "numeric",
                     hour: "2-digit",
                     minute: "2-digit",
-                  })}
+                  }) : ""}
                 </p>
               </div>
             </div>

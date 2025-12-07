@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Download, BookOpen, Headphones, Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/utils";
+import { useHydrated } from "@/hooks/useHydrated";
 
 interface Purchase {
   id: string;
@@ -42,6 +43,7 @@ export default function PurchaseHistory({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [downloading, setDownloading] = useState<string | null>(null);
+  const hydrated = useHydrated();
 
   useEffect(() => {
     fetchPurchases();
@@ -174,7 +176,7 @@ export default function PurchaseHistory({
                 <span>{formatPrice(purchase.amount)}</span>
                 <span className="mx-2">•</span>
                 <span>
-                  {new Date(purchase.createdAt).toLocaleDateString("de-DE")}
+                  {hydrated ? new Date(purchase.createdAt).toLocaleDateString("de-DE") : ""}
                 </span>
               </div>
 

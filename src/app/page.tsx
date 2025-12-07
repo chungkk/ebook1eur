@@ -11,7 +11,7 @@ async function getRecentBooks() {
     const books = await Book.find({ status: "active" })
       .select("title description author type duration price coverImage")
       .sort({ createdAt: -1 })
-      .limit(8)
+      .limit(15)
       .lean();
 
     return books.map((book) => ({

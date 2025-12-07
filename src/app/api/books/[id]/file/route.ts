@@ -33,21 +33,12 @@ export async function GET(
     }
 
     if (USE_LOCAL_STORAGE) {
-      // Handle both formats: "books/xxx.epub" and "xxx.epub"
-      let relativePath = book.filePath;
-      if (!relativePath.startsWith("books/")) {
-        relativePath = `books/${relativePath}`;
-      }
-      
       const filePath = path.join(
         process.cwd(),
         "public",
         "uploads",
-        relativePath
+        book.filePath
       );
-
-      console.log("[DEBUG] Book filePath from DB:", book.filePath);
-      console.log("[DEBUG] Full file path:", filePath);
 
       try {
         const fileBuffer = await fs.readFile(filePath);
