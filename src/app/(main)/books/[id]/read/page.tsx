@@ -20,6 +20,37 @@ interface BookInfo {
   type: string;
 }
 
+interface AccessInfo {
+  hasPurchased: boolean;
+  isLoggedIn: boolean;
+  trialPages: number;
+}
+
+async function decryptWithToken(encryptedData: ArrayBuffer, token: string): Promise<ArrayBuffer> {
+  // Decode the token to get key and iv
+  const tokenBytes = Uint8Array.from(atob(token), c => c.charCodeAt(0));
+  const keyBytes = tokenBytes.slice(0, 32);
+  const iv = tokenBytes.slice(32, 48);
+  
+  // Import the key
+  const key = await crypto.subtle.importKey(
+    "raw",
+    keyBytes,
+    { name: "AES-CBC" },
+    false,
+    ["decrypt"]
+  );
+  
+  // Decrypt the content
+  const decrypted = await crypto.subtle.decrypt(
+    { name: "AES-CBC", iv },
+    key,
+    encryptedData
+  );
+  
+  return decrypted;
+}
+
 export default function ReadBookPage() {
   const params = useParams();
   const router = useRouter();
@@ -27,34 +58,69 @@ export default function ReadBookPage() {
   const [epubData, setEpubData] = useState<ArrayBuffer | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [accessInfo, setAccessInfo] = useState<AccessInfo>({
+    hasPurchased: false,
+    isLoggedIn: false,
+    trialPages: 12,
+  });
 
   const bookId = params.id as string;
 
   useEffect(() => {
     async function fetchBook() {
       try {
-        // Fetch book info
-        const res = await fetch(`/api/books/${bookId}`);
-        if (!res.ok) {
+        // Fetch book info and access status in parallel
+        const [bookRes, accessRes] = await Promise.all([
+          fetch(`/api/books/${bookId}`),
+          fetch(`/api/books/${bookId}/access`),
+        ]);
+        
+        if (!bookRes.ok) {
           throw new Error("Book not found");
         }
-        const json = await res.json();
-        const data = json.data || json;
         
-        if (data.type !== "ebook") {
+        const bookJson = await bookRes.json();
+        const bookData = bookJson.data || bookJson;
+        
+        if (bookData.type !== "ebook") {
           setError("Đây không phải là ebook");
           return;
         }
         
-        setBook(data);
+        setBook(bookData);
         
-        // Fetch epub file as ArrayBuffer
-        const fileRes = await fetch(`/api/books/${bookId}/file`);
+        // Get access info
+        let hasPurchased = false;
+        if (accessRes.ok) {
+          const accessJson = await accessRes.json();
+          setAccessInfo(accessJson.data);
+          hasPurchased = accessJson.data?.hasPurchased || false;
+        }
+        
+        // Fetch epub file - use trial mode if not purchased
+        const mode = hasPurchased ? "full" : "trial";
+        const fileRes = await fetch(`/api/books/${bookId}/file?mode=${mode}`);
+        
         if (!fileRes.ok) {
+          const errorData = await fileRes.json();
+          if (errorData.requirePurchase) {
+            setError("Bạn cần mua sách để đọc toàn bộ nội dung");
+            return;
+          }
           throw new Error("Failed to load book file");
         }
+        
+        // Check if content is encrypted and get the token
+        const isEncrypted = fileRes.headers.get("X-Content-Encrypted") === "true";
+        const encryptionToken = fileRes.headers.get("X-Encryption-Token");
         const arrayBuffer = await fileRes.arrayBuffer();
-        setEpubData(arrayBuffer);
+        
+        // Decrypt if encrypted
+        let finalData = arrayBuffer;
+        if (isEncrypted && encryptionToken) {
+          finalData = await decryptWithToken(arrayBuffer, encryptionToken);
+        }
+        setEpubData(finalData);
       } catch (err) {
         console.error("Error loading book:", err);
         setError("Không tìm thấy sách hoặc không thể tải file");
@@ -99,6 +165,9 @@ export default function ReadBookPage() {
     <EpubReader
       url={epubData}
       title={book.title}
+      bookId={bookId}
+      isTrialMode={!accessInfo.hasPurchased}
+      trialPages={accessInfo.trialPages}
       onClose={handleClose}
     />
   );

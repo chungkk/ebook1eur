@@ -2,12 +2,16 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { ReactReader } from "react-reader";
-import type { Contents, Rendition } from "epubjs";
-import { Sun, Moon, Minus, Plus, X, Menu, Loader2 } from "lucide-react";
+import type { Rendition } from "epubjs";
+import { Sun, Moon, Minus, Plus, X, Menu, Loader2, Lock, ShoppingCart } from "lucide-react";
+import Link from "next/link";
 
 interface EpubReaderProps {
   url: string | ArrayBuffer;
   title: string;
+  bookId: string;
+  isTrialMode: boolean;
+  trialPages: number;
   onClose?: () => void;
 }
 
@@ -43,7 +47,7 @@ interface PageInfo {
   chapterName?: string;
 }
 
-export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
+export default function EpubReader({ url, title, bookId, isTrialMode, trialPages, onClose }: EpubReaderProps) {
   const [mounted, setMounted] = useState(false);
   const [location, setLocation] = useState<string | number>(0);
   const [fontSize, setFontSize] = useState(100);
@@ -51,9 +55,65 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
   const [showToc, setShowToc] = useState(false);
   const [rendition, setRendition] = useState<Rendition | null>(null);
   const [pageInfo, setPageInfo] = useState<PageInfo | null>(null);
+  const [showTrialOverlay, setShowTrialOverlay] = useState(false);
 
   // Use title as storage key since url might be ArrayBuffer
   const storageKey = STORAGE_KEY_PREFIX + title;
+
+  // DevTools detection and blocking
+  useEffect(() => {
+    const blockDevTools = (e: KeyboardEvent) => {
+      // Block F12
+      if (e.key === "F12") {
+        e.preventDefault();
+        return false;
+      }
+      // Block Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+      if (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key.toUpperCase())) {
+        e.preventDefault();
+        return false;
+      }
+      // Block Ctrl+U (view source)
+      if (e.ctrlKey && e.key.toUpperCase() === "U") {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    const blockContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+      return false;
+    };
+
+    // Detect DevTools opening
+    const detectDevTools = () => {
+      const threshold = 160;
+      const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+      const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+      
+      if (widthThreshold || heightThreshold) {
+        // DevTools might be open - blur the content
+        document.body.style.filter = "blur(10px)";
+      } else {
+        document.body.style.filter = "";
+      }
+    };
+
+    window.addEventListener("keydown", blockDevTools);
+    document.addEventListener("contextmenu", blockContextMenu);
+    window.addEventListener("resize", detectDevTools);
+    
+    // Check periodically
+    const interval = setInterval(detectDevTools, 1000);
+
+    return () => {
+      window.removeEventListener("keydown", blockDevTools);
+      document.removeEventListener("contextmenu", blockContextMenu);
+      window.removeEventListener("resize", detectDevTools);
+      clearInterval(interval);
+      document.body.style.filter = "";
+    };
+  }, []);
 
   // Ensure component only renders on client to avoid hydration mismatch
   useEffect(() => {
@@ -123,6 +183,19 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
           // Calculate normalized page number
           const currentPage = Math.max(1, Math.round((currentLocation / totalLocations) * targetPagesPerBook));
           
+          // Trial mode: block reading beyond trial pages
+          if (isTrialMode && currentPage > trialPages) {
+            setShowTrialOverlay(true);
+            // Go back to the last allowed page
+            const allowedPercentage = (trialPages / targetPagesPerBook);
+            const allowedLocation = Math.floor(allowedPercentage * totalLocations);
+            const cfi = rend.book.locations.cfiFromLocation(allowedLocation);
+            if (cfi) {
+              rend.display(cfi);
+            }
+            return;
+          }
+          
           setPageInfo({
             currentPage: Math.min(currentPage, targetPagesPerBook),
             totalPages: targetPagesPerBook,
@@ -131,13 +204,13 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
         });
         
         // Trigger initial relocated event
-        const currentLoc = rend.currentLocation();
-        if (currentLoc) {
+        const currentLoc = rend.currentLocation() as { start?: { cfi: string } } | undefined;
+        if (currentLoc?.start?.cfi) {
           rend.display(currentLoc.start.cfi);
         }
       });
     },
-    [theme, fontSize, getStoredLocation]
+    [theme, fontSize, getStoredLocation, isTrialMode, trialPages]
   );
 
   const changeFontSize = (delta: number) => {
@@ -342,6 +415,46 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
           </span>
         )}
       </div>
+
+      {/* Trial Mode Overlay */}
+      {showTrialOverlay && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[60] backdrop-blur-sm">
+          <div className="bg-white rounded-2xl p-8 max-w-md mx-4 text-center shadow-2xl">
+            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Lock className="h-8 w-8 text-amber-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Bạn đã đọc hết phần thử
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Bạn đã đọc {trialPages} trang đầu tiên. Hãy mua sách để tiếp tục đọc toàn bộ nội dung.
+            </p>
+            <div className="flex flex-col gap-3">
+              <Link
+                href={`/books/${bookId}`}
+                className="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+              >
+                <ShoppingCart className="h-5 w-5" />
+                Mua sách ngay
+              </Link>
+              <button
+                onClick={() => setShowTrialOverlay(false)}
+                className="text-gray-500 hover:text-gray-700 py-2"
+              >
+                Tiếp tục đọc thử
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Trial Mode Banner */}
+      {isTrialMode && !showTrialOverlay && (
+        <div className="fixed bottom-20 left-1/2 -translate-x-1/2 bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg z-[55] flex items-center gap-2">
+          <Lock className="h-4 w-4" />
+          Đọc thử: {pageInfo?.currentPage || 1}/{trialPages} trang
+        </div>
+      )}
     </div>
   );
 }
