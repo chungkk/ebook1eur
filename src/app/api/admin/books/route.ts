@@ -11,7 +11,7 @@ const createBookSchema = z.object({
   type: z.enum(["ebook", "audiobook"]),
   price: z.number().min(0.01).max(1000),
   duration: z.number().optional(),
-  coverImage: z.string().url(),
+  coverImage: z.string().min(1),
   filePath: z.string().min(1),
   fileSize: z.number().min(1),
 });

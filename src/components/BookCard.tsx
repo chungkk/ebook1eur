@@ -30,7 +30,7 @@ export default function BookCard({
   const isAudiobook = type === "audiobook";
 
   return (
-    <Card className="group overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1">
+    <Card className="group overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1 flex flex-col h-full">
       <Link href={`/books/${id}`}>
         <div className="relative aspect-[3/4] overflow-hidden bg-parchment-100">
           <Image
@@ -70,7 +70,7 @@ export default function BookCard({
         </div>
       </Link>
 
-      <CardContent className="p-4">
+      <CardContent className="p-4 flex-1">
         <Link href={`/books/${id}`}>
           <h3 className="font-semibold text-leather-800 line-clamp-2 hover:text-leather-600 transition-colors">
             {title}
@@ -87,7 +87,7 @@ export default function BookCard({
         )}
       </CardContent>
 
-      <CardFooter className="p-4 pt-0 flex items-center justify-between">
+      <CardFooter className="p-4 pt-0 flex items-center justify-between mt-auto">
         <span className="text-lg font-bold text-leather-700">
           {formatPrice(price)}
         </span>

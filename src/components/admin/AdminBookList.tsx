@@ -13,6 +13,7 @@ import {
   Search,
   Plus,
   RotateCcw,
+  Download,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -120,6 +121,22 @@ export default function AdminBookList() {
       }
     } catch (error) {
       console.error("Failed to restore book:", error);
+    }
+  };
+
+  const handleTestDownload = async (book: Book) => {
+    try {
+      const response = await fetch(`/api/admin/test-download/${book.id}`);
+      const data = await response.json();
+
+      if (data.success) {
+        window.open(data.data.downloadUrl, "_blank");
+      } else {
+        alert(data.error || "Download failed");
+      }
+    } catch (error) {
+      console.error("Failed to download:", error);
+      alert("Download failed");
     }
   };
 
@@ -246,6 +263,14 @@ export default function AdminBookList() {
                     <div className="flex justify-end gap-2">
                       {book.status === "active" ? (
                         <>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleTestDownload(book)}
+                            title="Test Download"
+                          >
+                            <Download className="h-4 w-4 text-blue-500" />
+                          </Button>
                           <Link href={`/admin/books/${book.id}/edit`}>
                             <Button variant="ghost" size="sm">
                               <Edit className="h-4 w-4" />

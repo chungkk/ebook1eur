@@ -12,7 +12,7 @@ const updateBookSchema = z.object({
   type: z.enum(["ebook", "audiobook"]).optional(),
   price: z.number().min(0.01).max(1000).optional(),
   duration: z.number().optional(),
-  coverImage: z.string().url().optional(),
+  coverImage: z.string().min(1).optional(),
   filePath: z.string().min(1).optional(),
   fileSize: z.number().min(1).optional(),
   status: z.enum(["active", "deleted"]).optional(),

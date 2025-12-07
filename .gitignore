@@ -48,3 +48,7 @@ next-env.d.ts
 # Google Cloud
 gcs-service-account.json
 *.json.key
+
+# Uploaded files
+public/uploads/*
+!public/uploads/.gitkeep
