@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen, Headphones, Clock, ArrowLeft, FileText } from "lucide-react";
+import { BookOpen, Headphones, Clock, ArrowLeft, FileText, Play } from "lucide-react";
 import { connectDB } from "@/lib/db";
 import Book from "@/models/Book";
 import { formatPrice, formatDuration } from "@/lib/utils";
@@ -136,8 +136,17 @@ export default async function BookDetailPage({ params }: PageProps) {
               <QuotaDisplay compact />
             </div>
 
-            {/* Checkout Button */}
-            <div className="mb-8">
+            {/* Read / Checkout Buttons */}
+            <div className="mb-8 flex flex-col gap-3">
+              {!isAudiobook && (
+                <Link
+                  href={`/books/${book.id}/read`}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-bookmark-green px-6 py-3 text-lg font-semibold text-white hover:bg-green-600 transition-colors"
+                >
+                  <Play className="h-5 w-5" />
+                  Đọc sách
+                </Link>
+              )}
               <CheckoutButton
                 bookId={book.id}
                 bookTitle={book.title}

@@ -32,7 +32,7 @@ export default function BookCard({
   return (
     <Card className="group overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1 flex flex-col h-full">
       <Link href={`/books/${id}`}>
-        <div className="relative aspect-[3/4] overflow-hidden bg-parchment-100">
+        <div className="relative aspect-[4/5] overflow-hidden bg-parchment-100">
           <Image
             src={coverImage}
             alt={title}
@@ -70,14 +70,14 @@ export default function BookCard({
         </div>
       </Link>
 
-      <CardContent className="p-4 flex-1">
+      <CardContent className="p-3 md:p-4 flex-1">
         <Link href={`/books/${id}`}>
-          <h3 className="font-semibold text-leather-800 line-clamp-2 hover:text-leather-600 transition-colors">
+          <h3 className="font-semibold text-sm md:text-base text-leather-800 line-clamp-2 hover:text-leather-600 transition-colors">
             {title}
           </h3>
         </Link>
-        <p className="text-sm text-ink-500 mt-1">{author}</p>
-        <p className="text-sm text-ink-400 mt-2 line-clamp-2">{description}</p>
+        <p className="text-xs md:text-sm text-ink-500 mt-1">{author}</p>
+        <p className="text-xs md:text-sm text-ink-400 mt-1 md:mt-2 line-clamp-2 hidden sm:block">{description}</p>
 
         {isAudiobook && duration && (
           <div className="flex items-center gap-1 mt-2 text-xs text-ink-400">
@@ -87,12 +87,12 @@ export default function BookCard({
         )}
       </CardContent>
 
-      <CardFooter className="p-4 pt-0 flex items-center justify-between mt-auto">
-        <span className="text-lg font-bold text-leather-700">
+      <CardFooter className="p-3 md:p-4 pt-0 flex items-center justify-between mt-auto">
+        <span className="text-base md:text-lg font-bold text-leather-700">
           {formatPrice(price)}
         </span>
         <Link href={`/books/${id}`}>
-          <Button size="sm">Details ansehen</Button>
+          <Button size="sm" className="text-xs md:text-sm px-2 md:px-3">Details</Button>
         </Link>
       </CardFooter>
     </Card>
