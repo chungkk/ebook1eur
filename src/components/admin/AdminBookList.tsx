@@ -87,7 +87,7 @@ export default function AdminBookList() {
   };
 
   const handleDelete = async (book: Book) => {
-    if (!confirm(`Bạn có chắc muốn xóa "${book.title}"?`)) return;
+    if (!confirm(`Sind Sie sicher, dass Sie "${book.title}" löschen möchten?`)) return;
 
     setDeleting(book.id);
     try {
@@ -131,7 +131,7 @@ export default function AdminBookList() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-400" />
             <Input
-              placeholder="Tìm theo tên sách hoặc tác giả..."
+              placeholder="Nach Titel oder Autor suchen..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="pl-10"
@@ -142,25 +142,25 @@ export default function AdminBookList() {
             onChange={(e) => setType(e.target.value)}
             className="h-10 px-3 rounded-md border border-parchment-300 bg-white"
           >
-            <option value="">Tất cả loại</option>
-            <option value="ebook">Ebook</option>
-            <option value="audiobook">Sách nói</option>
+            <option value="">Alle Typen</option>
+            <option value="ebook">E-Book</option>
+            <option value="audiobook">Hörbuch</option>
           </select>
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
             className="h-10 px-3 rounded-md border border-parchment-300 bg-white"
           >
-            <option value="active">Đang hoạt động</option>
-            <option value="deleted">Đã xóa</option>
+            <option value="active">Aktiv</option>
+            <option value="deleted">Gelöscht</option>
           </select>
-          <Button type="submit">Tìm</Button>
+          <Button type="submit">Suchen</Button>
         </form>
 
         <Link href="/admin/books/new">
           <Button>
             <Plus className="h-4 w-4 mr-2" />
-            Thêm sách
+            Buch hinzufügen
           </Button>
         </Link>
       </div>
@@ -172,7 +172,7 @@ export default function AdminBookList() {
         </div>
       ) : books.length === 0 ? (
         <div className="text-center py-12 text-ink-500">
-          Không tìm thấy sách nào
+          Keine Bücher gefunden
         </div>
       ) : (
         <div className="bg-white rounded-lg border border-parchment-200 overflow-hidden">
@@ -180,19 +180,19 @@ export default function AdminBookList() {
             <thead className="bg-parchment-50 border-b border-parchment-200">
               <tr>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-600">
-                  Sách
+                  Buch
                 </th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-600">
-                  Loại
+                  Typ
                 </th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-600">
-                  Giá
+                  Preis
                 </th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-600">
-                  Ngày tạo
+                  Erstellt am
                 </th>
                 <th className="text-right px-4 py-3 text-sm font-medium text-ink-600">
-                  Thao tác
+                  Aktionen
                 </th>
               </tr>
             </thead>
@@ -235,12 +235,12 @@ export default function AdminBookList() {
                       ) : (
                         <BookOpen className="h-3 w-3" />
                       )}
-                      {book.type === "audiobook" ? "Sách nói" : "Ebook"}
+                      {book.type === "audiobook" ? "Hörbuch" : "E-Book"}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-sm">{formatPrice(book.price)}</td>
                   <td className="px-4 py-3 text-sm text-ink-500">
-                    {new Date(book.createdAt).toLocaleDateString("vi-VN")}
+                    {new Date(book.createdAt).toLocaleDateString("de-DE")}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex justify-end gap-2">
@@ -271,7 +271,7 @@ export default function AdminBookList() {
                           onClick={() => handleRestore(book)}
                         >
                           <RotateCcw className="h-4 w-4 mr-1" />
-                          Khôi phục
+                          Wiederherstellen
                         </Button>
                       )}
                     </div>

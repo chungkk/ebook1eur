@@ -28,13 +28,13 @@ export default function ForgotPasswordForm() {
       const data = await response.json();
 
       if (!data.success) {
-        setError(data.error || "Đã có lỗi xảy ra");
+        setError(data.error || "Ein Fehler ist aufgetreten");
         return;
       }
 
       setSuccess(true);
     } catch {
-      setError("Đã có lỗi xảy ra, vui lòng thử lại");
+      setError("Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut");
     } finally {
       setLoading(false);
     }
@@ -47,15 +47,15 @@ export default function ForgotPasswordForm() {
           <CheckCircle className="h-6 w-6 text-green-600" />
         </div>
         <h3 className="text-lg font-semibold text-leather-800">
-          Kiểm tra email của bạn
+          Überprüfen Sie Ihre E-Mail
         </h3>
         <p className="text-ink-600 text-sm">
-          Nếu email tồn tại trong hệ thống, bạn sẽ nhận được link đặt lại mật khẩu trong vài phút.
+          Falls die E-Mail in unserem System existiert, erhalten Sie in wenigen Minuten einen Link zum Zurücksetzen des Passworts.
         </p>
         <Link href="/login">
           <Button variant="outline" className="mt-4">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Quay lại đăng nhập
+            Zurück zur Anmeldung
           </Button>
         </Link>
       </div>
@@ -65,7 +65,7 @@ export default function ForgotPasswordForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <p className="text-ink-600 text-sm">
-        Nhập email của bạn và chúng tôi sẽ gửi link đặt lại mật khẩu.
+        Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen des Passworts.
       </p>
 
       {error && (
@@ -75,11 +75,11 @@ export default function ForgotPasswordForm() {
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">E-Mail</Label>
         <Input
           id="email"
           type="email"
-          placeholder="email@example.com"
+          placeholder="email@beispiel.de"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -91,10 +91,10 @@ export default function ForgotPasswordForm() {
         {loading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Đang gửi...
+            Wird gesendet...
           </>
         ) : (
-          "Gửi link đặt lại mật khẩu"
+          "Link zum Zurücksetzen senden"
         )}
       </Button>
 
@@ -103,7 +103,7 @@ export default function ForgotPasswordForm() {
         className="flex items-center justify-center text-sm text-ink-600 hover:text-leather-600"
       >
         <ArrowLeft className="mr-2 h-4 w-4" />
-        Quay lại đăng nhập
+        Zurück zur Anmeldung
       </Link>
     </form>
   );

@@ -5,8 +5,8 @@ import RegisterForm from "@/components/auth/RegisterForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Đăng ký | ebook1eur",
-  description: "Tạo tài khoản ebook1eur để mua sách với giá €1",
+  title: "Registrieren | ebook1eur",
+  description: "Erstellen Sie ein ebook1eur-Konto, um Bücher für €1 zu kaufen",
 };
 
 export default function RegisterPage() {
@@ -18,7 +18,7 @@ export default function RegisterPage() {
             <BookOpen className="h-8 w-8 text-leather-600" />
             <span className="text-2xl font-bold text-leather-800">ebook1eur</span>
           </Link>
-          <CardTitle className="text-xl">Tạo tài khoản</CardTitle>
+          <CardTitle className="text-xl">Konto erstellen</CardTitle>
         </CardHeader>
         <CardContent>
           <RegisterForm />

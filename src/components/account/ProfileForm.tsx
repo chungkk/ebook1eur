@@ -42,7 +42,7 @@ export default function ProfileForm() {
         setName(data.data.name);
       }
     } catch {
-      setError("Không thể tải thông tin tài khoản");
+      setError("Kontoinformationen konnten nicht geladen werden");
     } finally {
       setLoading(false);
     }
@@ -62,11 +62,11 @@ export default function ProfileForm() {
 
     if (changingPassword) {
       if (!passwordChecks.length || !passwordChecks.uppercase || !passwordChecks.number) {
-        setError("Mật khẩu mới không đáp ứng yêu cầu");
+        setError("Das neue Passwort erfüllt nicht die Anforderungen");
         return;
       }
       if (newPassword !== confirmPassword) {
-        setError("Mật khẩu xác nhận không khớp");
+        setError("Passwörter stimmen nicht überein");
         return;
       }
     }
@@ -84,7 +84,7 @@ export default function ProfileForm() {
       }
 
       if (Object.keys(body).length === 0) {
-        setSuccess("Không có thay đổi");
+        setSuccess("Keine Änderungen");
         setSaving(false);
         return;
       }
@@ -102,7 +102,7 @@ export default function ProfileForm() {
         return;
       }
 
-      setSuccess("Cập nhật thành công");
+      setSuccess("Erfolgreich aktualisiert");
       setProfile(data.data);
 
       // Update session if name changed
@@ -118,7 +118,7 @@ export default function ProfileForm() {
         setChangingPassword(false);
       }
     } catch {
-      setError("Đã có lỗi xảy ra");
+      setError("Ein Fehler ist aufgetreten");
     } finally {
       setSaving(false);
     }
@@ -155,7 +155,7 @@ export default function ProfileForm() {
 
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="name">Họ tên</Label>
+          <Label htmlFor="name">Name</Label>
           <Input
             id="name"
             value={name}
@@ -165,9 +165,9 @@ export default function ProfileForm() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email">E-Mail</Label>
           <Input id="email" value={profile?.email || ""} disabled />
-          <p className="text-xs text-ink-500">Email không thể thay đổi</p>
+          <p className="text-xs text-ink-500">E-Mail kann nicht geändert werden</p>
         </div>
       </div>
 
@@ -179,14 +179,14 @@ export default function ProfileForm() {
             variant="outline"
             onClick={() => setChangingPassword(true)}
           >
-            Đổi mật khẩu
+            Passwort ändern
           </Button>
         ) : (
           <div className="space-y-4">
-            <h3 className="font-medium text-leather-800">Đổi mật khẩu</h3>
+            <h3 className="font-medium text-leather-800">Passwort ändern</h3>
 
             <div className="space-y-2">
-              <Label htmlFor="currentPassword">Mật khẩu hiện tại</Label>
+              <Label htmlFor="currentPassword">Aktuelles Passwort</Label>
               <div className="relative">
                 <Input
                   id="currentPassword"
@@ -206,7 +206,7 @@ export default function ProfileForm() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="newPassword">Mật khẩu mới</Label>
+              <Label htmlFor="newPassword">Neues Passwort</Label>
               <Input
                 id="newPassword"
                 type={showPasswords ? "text" : "password"}
@@ -215,14 +215,14 @@ export default function ProfileForm() {
                 disabled={saving}
               />
               <div className="space-y-1 mt-2">
-                <CheckItem checked={passwordChecks.length} text="Ít nhất 8 ký tự" />
-                <CheckItem checked={passwordChecks.uppercase} text="Ít nhất 1 chữ hoa" />
-                <CheckItem checked={passwordChecks.number} text="Ít nhất 1 số" />
+                <CheckItem checked={passwordChecks.length} text="Mindestens 8 Zeichen" />
+                <CheckItem checked={passwordChecks.uppercase} text="Mindestens 1 Großbuchstabe" />
+                <CheckItem checked={passwordChecks.number} text="Mindestens 1 Zahl" />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Xác nhận mật khẩu mới</Label>
+              <Label htmlFor="confirmPassword">Neues Passwort bestätigen</Label>
               <Input
                 id="confirmPassword"
                 type="password"
@@ -231,7 +231,7 @@ export default function ProfileForm() {
                 disabled={saving}
               />
               {confirmPassword && (
-                <CheckItem checked={passwordChecks.match} text="Mật khẩu khớp" />
+                <CheckItem checked={passwordChecks.match} text="Passwörter stimmen überein" />
               )}
             </div>
 
@@ -245,7 +245,7 @@ export default function ProfileForm() {
                 setConfirmPassword("");
               }}
             >
-              Hủy đổi mật khẩu
+              Passwortänderung abbrechen
             </Button>
           </div>
         )}
@@ -256,10 +256,10 @@ export default function ProfileForm() {
           {saving ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Đang lưu...
+              Wird gespeichert...
             </>
           ) : (
-            "Lưu thay đổi"
+            "Änderungen speichern"
           )}
         </Button>
       </div>

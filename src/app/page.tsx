@@ -38,23 +38,23 @@ export default async function Home() {
       <section className="bg-gradient-to-b from-cream-100 to-cream-50 py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-leather-900 mb-6">
-            Sách hay chỉ với{" "}
+            Tolle Bücher für nur{" "}
             <span className="text-bookmark-gold">1 EUR</span>
           </h1>
           <p className="text-lg md:text-xl text-ink-600 mb-8 max-w-2xl mx-auto">
-            Khám phá kho tàng ebook và sách nói chất lượng cao. Mỗi tháng bạn có thể mua 2 ebook và 2 sách nói.
+            Entdecken Sie hochwertige E-Books und Hörbücher. Jeden Monat können Sie 2 E-Books und 2 Hörbücher kaufen.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/books?type=ebook">
               <Button size="lg" className="w-full sm:w-auto">
                 <BookOpen className="mr-2 h-5 w-5" />
-                Xem Ebook
+                E-Books ansehen
               </Button>
             </Link>
             <Link href="/books?type=audiobook">
               <Button size="lg" variant="outline" className="w-full sm:w-auto">
                 <Headphones className="mr-2 h-5 w-5" />
-                Xem Sách nói
+                Hörbücher ansehen
               </Button>
             </Link>
           </div>
@@ -66,11 +66,11 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-leather-800">
-              Sách mới nhất
+              Neueste Bücher
             </h2>
             <Link href="/books">
               <Button variant="ghost">
-                Xem tất cả
+                Alle anzeigen
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
@@ -81,7 +81,7 @@ export default async function Home() {
           ) : (
             <div className="text-center py-12 bg-parchment-50 rounded-lg">
               <BookOpen className="mx-auto h-12 w-12 text-ink-300 mb-4" />
-              <p className="text-ink-500">Chưa có sách nào. Quay lại sau nhé!</p>
+              <p className="text-ink-500">Noch keine Bücher verfügbar. Schauen Sie später wieder vorbei!</p>
             </div>
           )}
         </div>
@@ -91,7 +91,7 @@ export default async function Home() {
       <section className="py-12 md:py-16 bg-parchment-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-bold text-leather-800 text-center mb-8">
-            Danh mục
+            Kategorien
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <Link
@@ -104,10 +104,10 @@ export default async function Home() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-leather-800">
-                    Ebook
+                    E-Book
                   </h3>
                   <p className="text-ink-500">
-                    Sách điện tử PDF, EPUB
+                    Digitale Bücher PDF, EPUB
                   </p>
                 </div>
               </div>
@@ -123,10 +123,10 @@ export default async function Home() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-leather-800">
-                    Sách nói
+                    Hörbuch
                   </h3>
                   <p className="text-ink-500">
-                    Audio book MP3, M4A
+                    Audio-Bücher MP3, M4A
                   </p>
                 </div>
               </div>

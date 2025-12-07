@@ -85,7 +85,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
         setError(data.error);
       }
     } catch {
-      setError("Không thể tải thông tin user");
+      setError("Benutzerinformationen konnten nicht geladen werden");
     } finally {
       setLoading(false);
     }
@@ -95,9 +95,9 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
     if (!user) return;
 
     const newStatus = user.status === "active" ? "blocked" : "active";
-    const action = newStatus === "blocked" ? "khóa" : "mở khóa";
+    const action = newStatus === "blocked" ? "sperren" : "entsperren";
 
-    if (!confirm(`Bạn có chắc muốn ${action} tài khoản này?`)) return;
+    if (!confirm(`Sind Sie sicher, dass Sie dieses Konto ${action} möchten?`)) return;
 
     setUpdating(true);
     try {
@@ -111,10 +111,10 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
       if (data.success) {
         setUser({ ...user, status: newStatus });
       } else {
-        alert(data.error || "Không thể cập nhật trạng thái");
+        alert(data.error || "Status konnte nicht aktualisiert werden");
       }
     } catch {
-      alert("Đã có lỗi xảy ra");
+      alert("Ein Fehler ist aufgetreten");
     } finally {
       setUpdating(false);
     }
@@ -131,9 +131,9 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
   if (error || !user) {
     return (
       <div className="text-center py-12">
-        <p className="text-red-600">{error || "User not found"}</p>
+        <p className="text-red-600">{error || "Benutzer nicht gefunden"}</p>
         <Link href="/admin/users">
-          <Button className="mt-4">Quay lại danh sách</Button>
+          <Button className="mt-4">Zurück zur Liste</Button>
         </Link>
       </div>
     );
@@ -146,7 +146,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
         className="inline-flex items-center text-ink-600 hover:text-leather-700"
       >
         <ArrowLeft className="mr-2 h-4 w-4" />
-        Quay lại danh sách
+        Zurück zur Liste
       </Link>
 
       {/* User Info Card */}
@@ -184,12 +184,12 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
                     {user.status === "active" ? (
                       <>
                         <CheckCircle className="h-4 w-4" />
-                        Hoạt động
+                        Aktiv
                       </>
                     ) : (
                       <>
                         <Ban className="h-4 w-4" />
-                        Đã khóa
+                        Gesperrt
                       </>
                     )}
                   </span>
@@ -206,12 +206,12 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
                       ) : user.status === "active" ? (
                         <>
                           <Ban className="h-4 w-4 mr-1" />
-                          Khóa tài khoản
+                          Konto sperren
                         </>
                       ) : (
                         <>
                           <CheckCircle className="h-4 w-4 mr-1" />
-                          Mở khóa
+                          Entsperren
                         </>
                       )}
                     </Button>
@@ -222,7 +222,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
               <div className="flex flex-wrap gap-4 mt-4 text-sm text-ink-500">
                 <div className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
-                  Tham gia: {new Date(user.createdAt).toLocaleDateString("vi-VN")}
+                  Registriert: {new Date(user.createdAt).toLocaleDateString("de-DE")}
                 </div>
                 <span
                   className={`px-2 py-0.5 rounded ${
@@ -244,7 +244,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-ink-600">
-              Tổng đơn mua
+              Käufe gesamt
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -257,7 +257,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-ink-600">
-              Tổng chi tiêu
+              Ausgaben gesamt
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -270,7 +270,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-ink-600">
-              Ebook tháng này
+              E-Books diesen Monat
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -283,7 +283,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-ink-600">
-              Sách nói tháng này
+              Hörbücher diesen Monat
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -299,12 +299,12 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <ShoppingBag className="h-5 w-5" />
-            Lịch sử mua hàng
+            Kaufhistorie
           </CardTitle>
         </CardHeader>
         <CardContent>
           {purchases.length === 0 ? (
-            <p className="text-center text-ink-500 py-4">Chưa có đơn hàng nào</p>
+            <p className="text-center text-ink-500 py-4">Noch keine Bestellungen</p>
           ) : (
             <div className="space-y-3">
               {purchases.map((purchase) => (
@@ -325,7 +325,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <p className="font-medium text-leather-800 truncate">
-                        {purchase.book?.title || "Sách đã xóa"}
+                        {purchase.book?.title || "Buch gelöscht"}
                       </p>
                       {purchase.book?.type && (
                         <span
@@ -348,7 +348,7 @@ export default function AdminUserDetail({ userId }: AdminUserDetailProps) {
                   <div className="text-right flex-shrink-0">
                     <p className="font-medium">{formatPrice(purchase.amount)}</p>
                     <p className="text-xs text-ink-400">
-                      {new Date(purchase.createdAt).toLocaleDateString("vi-VN")}
+                      {new Date(purchase.createdAt).toLocaleDateString("de-DE")}
                     </p>
                   </div>
                 </div>

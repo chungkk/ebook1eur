@@ -3,7 +3,15 @@
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
-import { BookOpen, User, LogOut, Settings } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { BookOpen, User, LogOut, Settings, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const { data: session, status } = useSession();
@@ -27,13 +35,13 @@ export default function Navbar() {
                 href="/books?type=ebook"
                 className="text-sm font-medium text-ink-600 hover:text-leather-600 transition-colors"
               >
-                Ebook
+                E-Books
               </Link>
               <Link
                 href="/books?type=audiobook"
                 className="text-sm font-medium text-ink-600 hover:text-leather-600 transition-colors"
               >
-                Sách nói
+                Hörbücher
               </Link>
             </div>
           </div>
@@ -42,39 +50,55 @@ export default function Navbar() {
             {isLoading ? (
               <div className="h-9 w-20 animate-pulse rounded-md bg-parchment-200" />
             ) : session ? (
-              <>
-                {isAdmin && (
-                  <Link href="/admin">
-                    <Button variant="ghost" size="sm">
-                      <Settings className="h-4 w-4 mr-1" />
-                      Admin
-                    </Button>
-                  </Link>
-                )}
-                <Link href="/account">
-                  <Button variant="ghost" size="sm">
-                    <User className="h-4 w-4 mr-1" />
-                    {session.user?.name || "Tài khoản"}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="gap-1">
+                    <User className="h-4 w-4" />
+                    {session.user?.name || "Konto"}
+                    <ChevronDown className="h-3 w-3" />
                   </Button>
-                </Link>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => signOut({ callbackUrl: "/" })}
-                >
-                  <LogOut className="h-4 w-4 mr-1" />
-                  Đăng xuất
-                </Button>
-              </>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuLabel>
+                    {session.user?.email}
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  {isAdmin && (
+                    <>
+                      <DropdownMenuItem asChild>
+                        <Link href="/admin" className="cursor-pointer">
+                          <Settings className="h-4 w-4 mr-2" />
+                          Admin-Bereich
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                    </>
+                  )}
+                  <DropdownMenuItem asChild>
+                    <Link href="/account" className="cursor-pointer">
+                      <User className="h-4 w-4 mr-2" />
+                      Mein Konto
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => signOut({ callbackUrl: "/" })}
+                    className="text-bookmark-red focus:text-bookmark-red cursor-pointer"
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Abmelden
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <>
                 <Link href="/login">
                   <Button variant="ghost" size="sm">
-                    Đăng nhập
+                    Anmelden
                   </Button>
                 </Link>
                 <Link href="/register">
-                  <Button size="sm">Đăng ký</Button>
+                  <Button size="sm">Registrieren</Button>
                 </Link>
               </>
             )}

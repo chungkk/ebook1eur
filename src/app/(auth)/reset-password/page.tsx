@@ -19,7 +19,7 @@ export default function ResetPasswordPage() {
             <BookOpen className="h-8 w-8 text-leather-600" />
             <span className="text-2xl font-bold text-leather-800">ebook1eur</span>
           </Link>
-          <CardTitle className="text-xl">Đặt lại mật khẩu</CardTitle>
+          <CardTitle className="text-xl">Passwort zurücksetzen</CardTitle>
         </CardHeader>
         <CardContent>
           <Suspense

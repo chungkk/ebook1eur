@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "seed:admin": "tsx scripts/create-admin.ts",
-    "seed:books": "tsx scripts/seed-books.ts"
+    "seed:books": "tsx scripts/seed-books.ts",
+    "crawl:ebooks": "tsx scripts/crawl-ebook-de-puppeteer.ts"
   },
   "dependencies": {
     "@google-cloud/storage": "^7.18.0",
@@ -46,6 +47,9 @@
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.0.0",
     "postcss": "^8.4.0",
+    "puppeteer": "^24.32.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "tailwindcss": "^3.4.0",
     "tsx": "^4.21.0",
     "typescript": "^5.6.0"

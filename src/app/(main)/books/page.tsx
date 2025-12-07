@@ -48,10 +48,10 @@ export default async function BooksPage({ searchParams }: PageProps) {
 
   const title =
     type === "ebook"
-      ? "Ebook"
+      ? "E-Books"
       : type === "audiobook"
-        ? "Sách nói"
-        : "Tất cả sách";
+        ? "Hörbücher"
+        : "Alle Bücher";
 
   return (
     <div className="min-h-screen py-8">
@@ -67,7 +67,7 @@ export default async function BooksPage({ searchParams }: PageProps) {
                 variant={!type ? "default" : "outline"}
                 size="sm"
               >
-                Tất cả
+                Alle
               </Button>
             </Link>
             <Link href="/books?type=ebook">
@@ -76,7 +76,7 @@ export default async function BooksPage({ searchParams }: PageProps) {
                 size="sm"
               >
                 <BookOpen className="mr-1 h-4 w-4" />
-                Ebook
+                E-Books
               </Button>
             </Link>
             <Link href="/books?type=audiobook">
@@ -85,7 +85,7 @@ export default async function BooksPage({ searchParams }: PageProps) {
                 size="sm"
               >
                 <Headphones className="mr-1 h-4 w-4" />
-                Sách nói
+                Hörbücher
               </Button>
             </Link>
           </div>

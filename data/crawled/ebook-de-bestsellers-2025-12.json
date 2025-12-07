@@ -1,0 +1,807 @@
+{
+  "source": "ebook.de (manual)",
+  "crawledAt": "2025-12-07T08:38:51.167Z",
+  "totalBooks": 100,
+  "books": [
+    {
+      "rank": 1,
+      "title": "Helden",
+      "author": "Frank Schätzing",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/48301473/frank_schaetzing_helden.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 2,
+      "title": "Pyrit - Herrschaft der Zeit",
+      "author": "Katharina Santa",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/48943690/katharina_santa_pyrit_herrschaft_der_zeit.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 3,
+      "title": "Wie Risse in der Erde",
+      "author": "Clare Leslie Hall",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49156721/clare_leslie_hall_wie_risse_in_der_erde.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 4,
+      "title": "Winterküsse auf Amrum",
+      "author": "Nele Hansen",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51839192/nele_hansen_winterkuesse_auf_amrum_ein_weihnachtlicher_liebesroman_an_der_nordsee.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 5,
+      "title": "Die Kastanienschwestern",
+      "author": "Christine Jaeggi",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50331811/christine_jaeggi_die_kastanienschwestern.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 6,
+      "title": "Sophie L.",
+      "author": "Matthew Blake",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50414584/matthew_blake_sophie_l.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 7,
+      "title": "Die Kryptografin",
+      "author": "Hanna Aden",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50302599/hanna_aden_die_kryptografin.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 8,
+      "title": "Der Mann gegenüber",
+      "author": "Danilo Fender",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50233154/danilo_fender_der_mann_gegenueber.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 9,
+      "title": "Dreamslinger - Der Ruf des Drachen",
+      "author": "Graci Kim",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50384485/graci_kim_dreamslinger_der_ruf_des_drachen.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 10,
+      "title": "Bernsteintränen",
+      "author": "Izabelle Jardin",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/52011667/izabelle_jardin_bernsteintraenen.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 11,
+      "title": "Der Fall Leni Bauer",
+      "author": "Petra Hammesfahr",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50272570/petra_hammesfahr_der_fall_leni_bauer.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 12,
+      "title": "Der Weihnachtsmannkiller 3",
+      "author": "Klaus-Peter Wolf",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50414577/klaus_peter_wolf_der_weihnachtsmannkiller_3.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 13,
+      "title": "Im Bruchteil der Sekunde",
+      "author": "David Baldacci",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50857850/david_baldacci_im_bruchteil_der_sekunde.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 14,
+      "title": "Nacht der Ruinen",
+      "author": "Cay Rademacher",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49350162/cay_rademacher_nacht_der_ruinen.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 15,
+      "title": "Verraten",
+      "author": "Jussi Adler-Olsen",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47044944/jussi_adler_olsen_verraten.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 16,
+      "title": "Es ist noch nicht vorbei",
+      "author": "Amy Jordan",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50342536/amy_jordan_es_ist_noch_nicht_vorbei.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 17,
+      "title": "Die Chemie des Verbrechens - Die Fährte",
+      "author": "Sabine Weiß",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50384596/sabine_weiss_die_chemie_des_verbrechens_die_faehrte.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 18,
+      "title": "Apfelstrudel-Alibi",
+      "author": "Rita Falk",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51366983/rita_falk_apfelstrudel_alibi.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 19,
+      "title": "Tod und Teufel",
+      "author": "Frank Schätzing",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/48312804/frank_schaetzing_tod_und_teufel.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 20,
+      "title": "Die Stunde der Fälscher",
+      "author": "Jeffrey Archer",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50100776/jeffrey_archer_die_stunde_der_faelscher.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 21,
+      "title": "Die Nacht",
+      "author": "Marc Raabe",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/46304536/marc_raabe_die_nacht.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 22,
+      "title": "Tod und Ebbe",
+      "author": "Katharina Drüppel",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51221530/katharina_drueppel_tod_und_ebbe_der_nordseekrimi_mit_einer_taffen_ermittlerin.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 23,
+      "title": "Lupus",
+      "author": "Tibor Rode",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47931608/tibor_rode_lupus.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 24,
+      "title": "The Secret of Secrets",
+      "author": "Dan Brown",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49910445/dan_brown_the_secret_of_secrets.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 25,
+      "title": "Wir waren nur Mädchen",
+      "author": "Buzzy Jackson",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47243582/buzzy_jackson_wir_waren_nur_maedchen.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 26,
+      "title": "Wollschwein und Winterleiche",
+      "author": "Ladina Bordoli",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51800732/ladina_bordoli_wollschwein_und_winterleiche_ein_humorvoller_alpenkrimi.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 27,
+      "title": "Stonehenge - Die Kathedrale der Zeit",
+      "author": "Ken Follett",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49157373/ken_follett_stonehenge_die_kathedrale_der_zeit.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 28,
+      "title": "Das Flüstern des Lebens",
+      "author": "Katharina Fuchs",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47080979/katharina_fuchs_das_fluestern_des_lebens.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 29,
+      "title": "Das Narrenschiff",
+      "author": "Christoph Hein",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49205388/christoph_hein_das_narrenschiff.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 30,
+      "title": "Sommergeheimnisse in der Villa Limoni",
+      "author": "Sophia Liebesglück",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/52198584/sophia_liebesglueck_sommergeheimnisse_in_der_villa_limoni.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 31,
+      "title": "Der Wolf im dunklen Wald",
+      "author": "Sia Piontek",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49317347/sia_piontek_der_wolf_im_dunklen_wald.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 32,
+      "title": "Am Hang des Todes",
+      "author": "Lenz Koppelstätter",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50357638/lenz_koppelstaetter_am_hang_des_todes.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 33,
+      "title": "Jünger geht immer!",
+      "author": "Ellen Berg",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49407682/ellen_berg_juenger_geht_immer.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 34,
+      "title": "Pi mal Daumen",
+      "author": "Alina Bronsky",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47938152/alina_bronsky_pi_mal_daumen.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 35,
+      "title": "Oma, Ouzo und andere Katastrophen",
+      "author": "Thorsten Steffens",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51500410/thorsten_steffens_oma_ouzo_und_andere_katastrophen.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 36,
+      "title": "Eine schöne Leich",
+      "author": "Lisa Graf",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47485764/lisa_graf_eine_schoene_leich.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 37,
+      "title": "Was wir verschwiegen haben",
+      "author": "Christian Schirmer",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/52124445/christian_schirmer_was_wir_verschwiegen_haben.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 38,
+      "title": "Die Vertuschung",
+      "author": "Mick Saunter",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50076353/mick_saunter_die_vertuschung.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 39,
+      "title": "Es bleibt doch in der Familie",
+      "author": "Christiane Wünsche",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50414581/christiane_wuensche_es_bleibt_doch_in_der_familie.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 40,
+      "title": "Küstenmord",
+      "author": "Eva Jensen",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47693146/eva_jensen_kuestenmord_die_unsichtbaren_toten.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 41,
+      "title": "Das Jahr voller Bücher und Wunder",
+      "author": "Libby Page",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50302382/libby_page_das_jahr_voller_buecher_und_wunder.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 42,
+      "title": "Der Nachbar",
+      "author": "Sebastian Fitzek",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50358044/sebastian_fitzek_der_nachbar.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 43,
+      "title": "Rostiges Grab",
+      "author": "Anders De La Motte",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51466348/anders_de_la_motte_rostiges_grab.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 44,
+      "title": "Liebeskummer & Lametta",
+      "author": "Gina Greifenstein",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50768023/gina_greifenstein_liebeskummer_lametta.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 45,
+      "title": "Die Kollegin - Wer hat sie so sehr gehasst, dass sie sterben musste?",
+      "author": "Freida McFadden",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49119650/freida_mcfadden_die_kollegin_wer_hat_sie_so_sehr_gehasst_dass_sie_sterben_musste.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 46,
+      "title": "Nachtgebet",
+      "author": "Jeffery Deaver",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51705321/jeffery_deaver_nachtgebet.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 47,
+      "title": "Todesflut",
+      "author": "Katharina Peters",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50391290/katharina_peters_todesflut.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 48,
+      "title": "Sie Fur Immer Zu Erobern (Mann der Rocky Mountains, #1)",
+      "author": "Alexis Winter",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51954464/alexis_winter_sie_fur_immer_zu_erobern_mann_der_rocky_mountains_1.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 49,
+      "title": "Drei Schwestern",
+      "author": "O. J. Mullen",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50779864/o_j_mullen_drei_schwestern_ein_fesselnder_psychothriller_der_unter_die_haut_geht.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 50,
+      "title": "Schneeflockenfunkeln",
+      "author": "Veronika Weiß",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50793319/veronika_weiss_schneeflockenfunkeln.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 51,
+      "title": "Die Tiefe",
+      "author": "Karen Sander",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50332248/karen_sander_die_tiefe_versunken.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 52,
+      "title": "Tote Seelen singen nicht",
+      "author": "Jussi Adler-Olsen, Stine Bolther, Line Holm",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49987213/jussi_adler_olsen_stine_bolther_line_holm_tote_seelen_singen_nicht.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 53,
+      "title": "Deadline",
+      "author": "Alex Lake",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50302119/alex_lake_deadline.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 54,
+      "title": "Das Polarlichtcafé",
+      "author": "Christine Kabus",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49407754/christine_kabus_das_polarlichtcafe.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 55,
+      "title": "Bed and breakfast",
+      "author": "Elias J. Connor",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/52043659/elias_j_connor_bed_and_breakfast.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 56,
+      "title": "Verlorene Provence",
+      "author": "Pierre Lagrange",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49203463/pierre_lagrange_verlorene_provence.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 57,
+      "title": "Treppe aus Papier",
+      "author": "Henrik Szántó",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50302557/henrik_szanto_treppe_aus_papier.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 58,
+      "title": "Die Wildnis",
+      "author": "Sarah Pearse",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49317584/sarah_pearse_die_wildnis.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 59,
+      "title": "Knochenkälte",
+      "author": "Simon Beckett",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/45539587/simon_beckett_knochenkaelte.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 60,
+      "title": "Das Familienfest",
+      "author": "B. P. Walter",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50162889/b_p_walter_das_familienfest_ein_packender_psychothriller_voll_unvorhersehbarer_twists.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 61,
+      "title": "Wintermord",
+      "author": "Katharina Peters",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47243558/katharina_peters_wintermord.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 62,
+      "title": "Herzfluch",
+      "author": "Andreas Gruber",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50302546/andreas_gruber_herzfluch.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 63,
+      "title": "Winterknistern auf Schottisch",
+      "author": "Karin Lindberg",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51995999/karin_lindberg_winterknistern_auf_schottisch.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 64,
+      "title": "Das Geheimnis von Winterthorne",
+      "author": "Zoë Marriott",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50302519/zoe_marriott_das_geheimnis_von_winterthorne.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 65,
+      "title": "Ich weiß, was du getan hast",
+      "author": "Sonya Bateman",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49340755/sonya_bateman_ich_weiss_was_du_getan_hast_ein_extrem_fesselnder_psychothriller_mit_einer_schockierenden_wendung.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 66,
+      "title": "Was du vergessen musst",
+      "author": "Monika Lüthi",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51700024/monika_luethi_was_du_vergessen_musst.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 67,
+      "title": "Blindspiel",
+      "author": "Max Seeck",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49310318/max_seeck_blindspiel.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 68,
+      "title": "Kalt wie die Nacht",
+      "author": "Bernhard Stäber",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/48943890/bernhard_staeber_kalt_wie_die_nacht.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 69,
+      "title": "Du musst meine Hand fester halten, Nr. 104",
+      "author": "Susanne Abel",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50387184/susanne_abel_du_musst_meine_hand_fester_halten_nr_104.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 70,
+      "title": "Lückenbüßer",
+      "author": "Volker Klüpfel, Michael Kobr",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47914605/volker_kluepfel_michael_kobr_lueckenbuesser.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 71,
+      "title": "Pancakes, Samt und Winterglanz",
+      "author": "Stina Jensen",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49135109/stina_jensen_pancakes_samt_und_winterglanz.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 72,
+      "title": "Madame le Commissaire und die gefährliche Begierde",
+      "author": "Pierre Martin",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49300515/pierre_martin_madame_le_commissaire_und_die_gefaehrliche_begierde.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 73,
+      "title": "Versprich mir, dass du tanzt",
+      "author": "Dani Atkins",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49300472/dani_atkins_versprich_mir_dass_du_tanzt.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 74,
+      "title": "Blutbuße",
+      "author": "Viveca Sten",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47949922/viveca_sten_blutbusse.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 75,
+      "title": "Monsieur le Comte und die Kunst der Entführung",
+      "author": "Pierre Martin",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50357294/pierre_martin_monsieur_le_comte_und_die_kunst_der_entfuehrung.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 76,
+      "title": "Die Frauen von Tyringham Park + Rückkehr nach Tyringham Park (EXKLUSIV bei uns!)",
+      "author": "Rosemary Mcloughlin",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50282655/rosemary_mcloughlin_die_frauen_von_tyringham_park_rueckkehr_nach_tyringham_park_exklusiv_bei_uns.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 77,
+      "title": "Die perfekten Nachbarn",
+      "author": "Anita Waller",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50546464/anita_waller_die_perfekten_nachbarn_ein_fesselnder_psychothriller_voller_geheimnisse_und_twists.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 78,
+      "title": "Undercover Milliardär",
+      "author": "Jessica Gregory",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50293290/jessica_gregory_undercover_milliardaer.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 79,
+      "title": "Die Schloss-Schwestern",
+      "author": "Liv Helland",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50331889/liv_helland_die_schloss_schwestern_sturmwindherz.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 80,
+      "title": "Kaltes Fieber",
+      "author": "Arne Dahl",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50342620/arne_dahl_kaltes_fieber.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 81,
+      "title": "Welt in Flammen",
+      "author": "Benjamin Monferat",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49570315/benjamin_monferat_welt_in_flammen.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 82,
+      "title": "Das Ehepaar",
+      "author": "Gillian Hobbs",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50356832/gillian_hobbs_das_ehepaar.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 83,
+      "title": "Tiefer Fall",
+      "author": "David Seinsche",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51714557/david_seinsche_tiefer_fall_der_packende_ermittler_krimi.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 84,
+      "title": "Dunkles Wasser",
+      "author": "Charlotte Link",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47882422/charlotte_link_dunkles_wasser.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 85,
+      "title": "Bundle",
+      "author": "Stefanie Lahme",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51789067/stefanie_lahme_bundle_ein_schotte_unterm_mistelzweig_ein_schotte_fuer_die_feiertage.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 86,
+      "title": "Die Assistentin",
+      "author": "Caroline Wahl",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50342920/caroline_wahl_die_assistentin.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 87,
+      "title": "Das Elternhaus",
+      "author": "L. H. Stacey",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/52060885/l_h_stacey_das_elternhaus_ein_schockierender_psychothriller_ueber_familiaere_geheimnisse_und_vergangene_schuld.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 88,
+      "title": "Dänische Weihnacht",
+      "author": "Frida Gronover",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50332363/frida_gronover_daenische_weihnacht.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 89,
+      "title": "Blutroter Felsen",
+      "author": "Lars Olsen",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51623733/lars_olsen_blutroter_felsen_helgoland_thriller.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 90,
+      "title": "Das Geheimnis vergangener Tage",
+      "author": "Norma Curtis",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51648828/norma_curtis_das_geheimnis_vergangener_tage.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 91,
+      "title": "Die Hummerfrauen",
+      "author": "Beatrix Gerstberger",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49264356/beatrix_gerstberger_die_hummerfrauen.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 92,
+      "title": "Obsession Falls",
+      "author": "Claire Kingsley",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51647321/claire_kingsley_obsession_falls.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 93,
+      "title": "Rettung",
+      "author": "Meghan O'Flynn",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49771793/meghan_o_flynn_rettung_ein_ash_park_roman_ash_park_german_1.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 94,
+      "title": "Winterglück und Inselzauber",
+      "author": "Claudia Schirdewan",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50425773/claudia_schirdewan_winterglueck_und_inselzauber_ein_weihnachtsfest_auf_borkum.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 95,
+      "title": "Mord Life Balance",
+      "author": "Sabrina Hüsken",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51885912/sabrina_huesken_mord_life_balance_ein_unterhaltsamer_krimi_an_der_ostsee.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 96,
+      "title": "In einem Zug",
+      "author": "Daniel Glattauer",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49270030/daniel_glattauer_in_einem_zug.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 97,
+      "title": "Der zweite Verdächtige",
+      "author": "Florian Schwiecker, Michael Tsokos",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/49300498/florian_schwiecker_michael_tsokos_der_zweite_verdaechtige.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 98,
+      "title": "Der Kurator",
+      "author": "M. W. Craven",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/50357907/m_w_craven_der_kurator.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 99,
+      "title": "Kalt wie die Nordsee",
+      "author": "Katharina Drüppel",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/51546816/katharina_drueppel_kalt_wie_die_nordsee_der_spannende_kuestenkrimi_zwischen_aurich_und_den_inseln_spiekeroog_und_langeoog.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    },
+    {
+      "rank": 100,
+      "title": "Weihnachten in der Villa am Elbstrand",
+      "author": "Charlotte Jacobi",
+      "price": "",
+      "url": "https://www.ebook.de/de/product/47915036/charlotte_jacobi_weihnachten_in_der_villa_am_elbstrand.html",
+      "crawledAt": "2025-12-07T08:38:51.167Z"
+    }
+  ]
+}

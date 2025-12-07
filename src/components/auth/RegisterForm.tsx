@@ -31,12 +31,12 @@ export default function RegisterForm() {
     setError("");
 
     if (!passwordChecks.length || !passwordChecks.uppercase || !passwordChecks.number) {
-      setError("Mật khẩu không đáp ứng yêu cầu");
+      setError("Passwort erfüllt nicht die Anforderungen");
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Mật khẩu xác nhận không khớp");
+      setError("Passwörter stimmen nicht überein");
       return;
     }
 
@@ -52,7 +52,7 @@ export default function RegisterForm() {
       const data = await response.json();
 
       if (!data.success) {
-        setError(data.error || "Đăng ký thất bại");
+        setError(data.error || "Registrierung fehlgeschlagen");
         return;
       }
 
@@ -70,7 +70,7 @@ export default function RegisterForm() {
         router.refresh();
       }
     } catch {
-      setError("Đã có lỗi xảy ra, vui lòng thử lại");
+      setError("Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut");
     } finally {
       setLoading(false);
     }
@@ -92,11 +92,11 @@ export default function RegisterForm() {
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="name">Họ tên</Label>
+        <Label htmlFor="name">Name</Label>
         <Input
           id="name"
           type="text"
-          placeholder="Nguyễn Văn A"
+          placeholder="Max Mustermann"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -105,11 +105,11 @@ export default function RegisterForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">E-Mail</Label>
         <Input
           id="email"
           type="email"
-          placeholder="email@example.com"
+          placeholder="email@beispiel.de"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -118,7 +118,7 @@ export default function RegisterForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password">Mật khẩu</Label>
+        <Label htmlFor="password">Passwort</Label>
         <div className="relative">
           <Input
             id="password"
@@ -138,14 +138,14 @@ export default function RegisterForm() {
           </button>
         </div>
         <div className="space-y-1 mt-2">
-          <CheckItem checked={passwordChecks.length} text="Ít nhất 8 ký tự" />
-          <CheckItem checked={passwordChecks.uppercase} text="Ít nhất 1 chữ hoa" />
-          <CheckItem checked={passwordChecks.number} text="Ít nhất 1 số" />
+          <CheckItem checked={passwordChecks.length} text="Mindestens 8 Zeichen" />
+          <CheckItem checked={passwordChecks.uppercase} text="Mindestens 1 Großbuchstabe" />
+          <CheckItem checked={passwordChecks.number} text="Mindestens 1 Zahl" />
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="confirmPassword">Xác nhận mật khẩu</Label>
+        <Label htmlFor="confirmPassword">Passwort bestätigen</Label>
         <Input
           id="confirmPassword"
           type="password"
@@ -156,7 +156,7 @@ export default function RegisterForm() {
           disabled={loading}
         />
         {confirmPassword && (
-          <CheckItem checked={passwordChecks.match} text="Mật khẩu khớp" />
+          <CheckItem checked={passwordChecks.match} text="Passwörter stimmen überein" />
         )}
       </div>
 
@@ -164,17 +164,17 @@ export default function RegisterForm() {
         {loading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Đang đăng ký...
+            Registrierung läuft...
           </>
         ) : (
-          "Đăng ký"
+          "Registrieren"
         )}
       </Button>
 
       <p className="text-center text-sm text-ink-600">
-        Đã có tài khoản?{" "}
+        Bereits ein Konto?{" "}
         <Link href="/login" className="text-leather-600 hover:text-leather-700 font-medium">
-          Đăng nhập
+          Anmelden
         </Link>
       </p>
     </form>

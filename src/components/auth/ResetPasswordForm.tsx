@@ -32,17 +32,17 @@ export default function ResetPasswordForm() {
     setError("");
 
     if (!token) {
-      setError("Link đặt lại mật khẩu không hợp lệ");
+      setError("Ungültiger Link zum Zurücksetzen des Passworts");
       return;
     }
 
     if (!passwordChecks.length || !passwordChecks.uppercase || !passwordChecks.number) {
-      setError("Mật khẩu không đáp ứng yêu cầu");
+      setError("Passwort erfüllt nicht die Anforderungen");
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Mật khẩu xác nhận không khớp");
+      setError("Passwörter stimmen nicht überein");
       return;
     }
 
@@ -58,13 +58,13 @@ export default function ResetPasswordForm() {
       const data = await response.json();
 
       if (!data.success) {
-        setError(data.error || "Đã có lỗi xảy ra");
+        setError(data.error || "Ein Fehler ist aufgetreten");
         return;
       }
 
       setSuccess(true);
     } catch {
-      setError("Đã có lỗi xảy ra, vui lòng thử lại");
+      setError("Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut");
     } finally {
       setLoading(false);
     }
@@ -84,13 +84,13 @@ export default function ResetPasswordForm() {
           <AlertCircle className="h-6 w-6 text-red-600" />
         </div>
         <h3 className="text-lg font-semibold text-leather-800">
-          Link không hợp lệ
+          Ungültiger Link
         </h3>
         <p className="text-ink-600 text-sm">
-          Link đặt lại mật khẩu không hợp lệ hoặc đã hết hạn.
+          Der Link zum Zurücksetzen des Passworts ist ungültig oder abgelaufen.
         </p>
         <Link href="/forgot-password">
-          <Button className="mt-4">Yêu cầu link mới</Button>
+          <Button className="mt-4">Neuen Link anfordern</Button>
         </Link>
       </div>
     );
@@ -103,13 +103,13 @@ export default function ResetPasswordForm() {
           <CheckCircle className="h-6 w-6 text-green-600" />
         </div>
         <h3 className="text-lg font-semibold text-leather-800">
-          Đặt lại mật khẩu thành công!
+          Passwort erfolgreich zurückgesetzt!
         </h3>
         <p className="text-ink-600 text-sm">
-          Bạn có thể đăng nhập với mật khẩu mới.
+          Sie können sich jetzt mit Ihrem neuen Passwort anmelden.
         </p>
         <Button onClick={() => router.push("/login")} className="mt-4">
-          Đăng nhập ngay
+          Jetzt anmelden
         </Button>
       </div>
     );
@@ -124,7 +124,7 @@ export default function ResetPasswordForm() {
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="password">Mật khẩu mới</Label>
+        <Label htmlFor="password">Neues Passwort</Label>
         <div className="relative">
           <Input
             id="password"
@@ -144,14 +144,14 @@ export default function ResetPasswordForm() {
           </button>
         </div>
         <div className="space-y-1 mt-2">
-          <CheckItem checked={passwordChecks.length} text="Ít nhất 8 ký tự" />
-          <CheckItem checked={passwordChecks.uppercase} text="Ít nhất 1 chữ hoa" />
-          <CheckItem checked={passwordChecks.number} text="Ít nhất 1 số" />
+          <CheckItem checked={passwordChecks.length} text="Mindestens 8 Zeichen" />
+          <CheckItem checked={passwordChecks.uppercase} text="Mindestens 1 Großbuchstabe" />
+          <CheckItem checked={passwordChecks.number} text="Mindestens 1 Zahl" />
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="confirmPassword">Xác nhận mật khẩu</Label>
+        <Label htmlFor="confirmPassword">Passwort bestätigen</Label>
         <Input
           id="confirmPassword"
           type="password"
@@ -162,7 +162,7 @@ export default function ResetPasswordForm() {
           disabled={loading}
         />
         {confirmPassword && (
-          <CheckItem checked={passwordChecks.match} text="Mật khẩu khớp" />
+          <CheckItem checked={passwordChecks.match} text="Passwörter stimmen überein" />
         )}
       </div>
 
@@ -170,10 +170,10 @@ export default function ResetPasswordForm() {
         {loading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Đang xử lý...
+            Wird verarbeitet...
           </>
         ) : (
-          "Đặt lại mật khẩu"
+          "Passwort zurücksetzen"
         )}
       </Button>
     </form>

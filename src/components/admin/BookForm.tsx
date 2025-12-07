@@ -155,7 +155,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="title">Tên sách *</Label>
+          <Label htmlFor="title">Buchtitel *</Label>
           <Input
             id="title"
             value={title}
@@ -166,7 +166,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="author">Tác giả *</Label>
+          <Label htmlFor="author">Autor *</Label>
           <Input
             id="author"
             value={author}
@@ -177,7 +177,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="type">Loại *</Label>
+          <Label htmlFor="type">Typ *</Label>
           <select
             id="type"
             value={type}
@@ -185,13 +185,13 @@ export default function BookForm({ book, mode }: BookFormProps) {
             className="w-full h-10 px-3 rounded-md border border-parchment-300 bg-white"
             disabled={loading}
           >
-            <option value="ebook">Ebook</option>
-            <option value="audiobook">Sách nói</option>
+            <option value="ebook">E-Book</option>
+            <option value="audiobook">Hörbuch</option>
           </select>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="price">Giá (EUR) *</Label>
+          <Label htmlFor="price">Preis (EUR) *</Label>
           <Input
             id="price"
             type="number"
@@ -206,7 +206,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
 
         {type === "audiobook" && (
           <div className="space-y-2">
-            <Label htmlFor="duration">Thời lượng (phút)</Label>
+            <Label htmlFor="duration">Dauer (Minuten)</Label>
             <Input
               id="duration"
               type="number"
@@ -219,7 +219,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
         )}
 
         <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="description">Mô tả *</Label>
+          <Label htmlFor="description">Beschreibung *</Label>
           <textarea
             id="description"
             value={description}
@@ -233,7 +233,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
 
         {/* Cover Upload */}
         <div className="space-y-2 sm:col-span-2">
-          <Label>Ảnh bìa *</Label>
+          <Label>Titelbild *</Label>
           {coverImage ? (
             <div className="flex items-center gap-4">
               <img
@@ -249,7 +249,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
                 disabled={loading}
               >
                 <X className="h-4 w-4 mr-1" />
-                Xóa
+                Entfernen
               </Button>
             </div>
           ) : (
@@ -260,7 +260,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
                 ) : (
                   <Upload className="h-4 w-4" />
                 )}
-                <span className="text-sm">Upload ảnh bìa</span>
+                <span className="text-sm">Titelbild hochladen</span>
                 <input
                   type="file"
                   accept="image/*"
@@ -269,9 +269,9 @@ export default function BookForm({ book, mode }: BookFormProps) {
                   disabled={loading || uploadingCover}
                 />
               </label>
-              <span className="text-xs text-ink-500">hoặc</span>
+              <span className="text-xs text-ink-500">oder</span>
               <Input
-                placeholder="URL ảnh bìa"
+                placeholder="Titelbild-URL"
                 value={coverImage}
                 onChange={(e) => setCoverImage(e.target.value)}
                 className="flex-1"
@@ -283,7 +283,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
 
         {/* File Upload */}
         <div className="space-y-2 sm:col-span-2">
-          <Label>File sách *</Label>
+          <Label>Buchdatei *</Label>
           {filePath ? (
             <div className="flex items-center gap-4 p-3 bg-parchment-50 rounded-lg">
               <div className="flex-1">
@@ -303,7 +303,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
                 disabled={loading}
               >
                 <X className="h-4 w-4 mr-1" />
-                Xóa
+                Entfernen
               </Button>
             </div>
           ) : (
@@ -313,7 +313,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
               ) : (
                 <Upload className="h-5 w-5" />
               )}
-              <span>Upload file sách (PDF, EPUB, MP3)</span>
+              <span>Buchdatei hochladen (PDF, EPUB, MP3)</span>
               <input
                 type="file"
                 accept=".pdf,.epub,.mp3,.m4a,.m4b"
@@ -331,12 +331,12 @@ export default function BookForm({ book, mode }: BookFormProps) {
           {loading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Đang lưu...
+              Wird gespeichert...
             </>
           ) : mode === "create" ? (
-            "Tạo sách"
+            "Buch erstellen"
           ) : (
-            "Cập nhật"
+            "Aktualisieren"
           )}
         </Button>
         <Button
@@ -345,7 +345,7 @@ export default function BookForm({ book, mode }: BookFormProps) {
           onClick={() => router.push("/admin/books")}
           disabled={loading}
         >
-          Hủy
+          Abbrechen
         </Button>
       </div>
     </form>

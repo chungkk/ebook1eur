@@ -61,7 +61,7 @@ export default function PurchaseHistory({
 
       setPurchases(data.data.purchases);
     } catch {
-      setError("Không thể tải lịch sử mua hàng");
+      setError("Kaufhistorie konnte nicht geladen werden");
     } finally {
       setLoading(false);
     }
@@ -115,9 +115,9 @@ export default function PurchaseHistory({
     return (
       <div className="text-center py-8">
         <BookOpen className="h-12 w-12 mx-auto text-ink-300 mb-4" />
-        <p className="text-ink-600">Bạn chưa mua sách nào</p>
+        <p className="text-ink-600">Sie haben noch keine Bücher gekauft</p>
         <Link href="/books">
-          <Button className="mt-4">Khám phá sách</Button>
+          <Button className="mt-4">Bücher entdecken</Button>
         </Link>
       </div>
     );
@@ -147,7 +147,7 @@ export default function PurchaseHistory({
             <div className="flex items-start justify-between gap-2">
               <div>
                 <h3 className="font-medium text-leather-800 truncate">
-                  {purchase.book?.title || "Sách đã xóa"}
+                  {purchase.book?.title || "Buch gelöscht"}
                 </h3>
                 <p className="text-sm text-ink-500">
                   {purchase.book?.author}
@@ -165,7 +165,7 @@ export default function PurchaseHistory({
                 ) : (
                   <BookOpen className="h-3 w-3" />
                 )}
-                {purchase.book?.type === "audiobook" ? "Sách nói" : "Ebook"}
+                {purchase.book?.type === "audiobook" ? "Hörbuch" : "E-Book"}
               </span>
             </div>
 
@@ -174,7 +174,7 @@ export default function PurchaseHistory({
                 <span>{formatPrice(purchase.amount)}</span>
                 <span className="mx-2">•</span>
                 <span>
-                  {new Date(purchase.createdAt).toLocaleDateString("vi-VN")}
+                  {new Date(purchase.createdAt).toLocaleDateString("de-DE")}
                 </span>
               </div>
 
@@ -190,14 +190,14 @@ export default function PurchaseHistory({
                   ) : (
                     <>
                       <Download className="h-4 w-4 mr-1" />
-                      Tải xuống
+                      Herunterladen
                     </>
                   )}
                 </Button>
               )}
 
               {purchase.download && !purchase.download.canDownload && (
-                <span className="text-xs text-ink-400">Đã tải</span>
+                <span className="text-xs text-ink-400">Heruntergeladen</span>
               )}
             </div>
           </div>
@@ -207,7 +207,7 @@ export default function PurchaseHistory({
       {showViewAll && purchases.length > 0 && (
         <Link href="/account/purchases" className="block">
           <Button variant="outline" className="w-full">
-            Xem tất cả lịch sử mua
+            Gesamte Kaufhistorie anzeigen
           </Button>
         </Link>
       )}

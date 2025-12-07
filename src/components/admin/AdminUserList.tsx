@@ -83,9 +83,9 @@ export default function AdminUserList() {
 
   const handleToggleStatus = async (user: UserData) => {
     const newStatus = user.status === "active" ? "blocked" : "active";
-    const action = newStatus === "blocked" ? "khóa" : "mở khóa";
+    const action = newStatus === "blocked" ? "sperren" : "entsperren";
 
-    if (!confirm(`Bạn có chắc muốn ${action} tài khoản "${user.name}"?`)) return;
+    if (!confirm(`Sind Sie sicher, dass Sie das Konto "${user.name}" ${action} möchten?`)) return;
 
     setUpdating(user.id);
     try {
@@ -99,7 +99,7 @@ export default function AdminUserList() {
       if (data.success) {
         fetchUsers();
       } else {
-        alert(data.error || "Không thể cập nhật trạng thái");
+        alert(data.error || "Status konnte nicht aktualisiert werden");
       }
     } catch (error) {
       console.error("Failed to update user status:", error);
@@ -115,7 +115,7 @@ export default function AdminUserList() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-400" />
           <Input
-            placeholder="Tìm theo tên hoặc email..."
+            placeholder="Nach Name oder E-Mail suchen..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-10"
@@ -126,11 +126,11 @@ export default function AdminUserList() {
           onChange={(e) => setStatus(e.target.value)}
           className="h-10 px-3 rounded-md border border-parchment-300 bg-white"
         >
-          <option value="">Tất cả trạng thái</option>
-          <option value="active">Hoạt động</option>
-          <option value="blocked">Đã khóa</option>
+          <option value="">Alle Status</option>
+          <option value="active">Aktiv</option>
+          <option value="blocked">Gesperrt</option>
         </select>
-        <Button type="submit">Tìm</Button>
+        <Button type="submit">Suchen</Button>
       </form>
 
       {/* User List */}
@@ -140,7 +140,7 @@ export default function AdminUserList() {
         </div>
       ) : users.length === 0 ? (
         <div className="text-center py-12 text-ink-500">
-          Không tìm thấy user nào
+          Keine Benutzer gefunden
         </div>
       ) : (
         <div className="bg-white rounded-lg border border-parchment-200 overflow-hidden">
@@ -148,22 +148,22 @@ export default function AdminUserList() {
             <thead className="bg-parchment-50 border-b border-parchment-200">
               <tr>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-600">
-                  User
+                  Benutzer
                 </th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-600">
-                  Vai trò
+                  Rolle
                 </th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-600">
-                  Đơn mua
+                  Käufe
                 </th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-600">
-                  Tổng chi
+                  Ausgaben
                 </th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-ink-600">
-                  Trạng thái
+                  Status
                 </th>
                 <th className="text-right px-4 py-3 text-sm font-medium text-ink-600">
-                  Thao tác
+                  Aktionen
                 </th>
               </tr>
             </thead>
@@ -214,12 +214,12 @@ export default function AdminUserList() {
                       {user.status === "active" ? (
                         <>
                           <CheckCircle className="h-3 w-3" />
-                          Hoạt động
+                          Aktiv
                         </>
                       ) : (
                         <>
                           <Ban className="h-3 w-3" />
-                          Đã khóa
+                          Gesperrt
                         </>
                       )}
                     </span>

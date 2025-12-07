@@ -7,7 +7,7 @@ import AdminBookList from "@/components/admin/AdminBookList";
 export default function AdminBooksPage() {
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-leather-800">Quản lý sách</h1>
+      <h1 className="text-2xl font-bold text-leather-800">Bücherverwaltung</h1>
 
       <Suspense
         fallback={

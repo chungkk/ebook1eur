@@ -23,20 +23,20 @@ export default function Error({
           <AlertTriangle className="h-8 w-8 text-red-600" />
         </div>
         <h1 className="text-2xl font-bold text-leather-800 mb-2">
-          Đã có lỗi xảy ra
+          Ein Fehler ist aufgetreten
         </h1>
         <p className="text-ink-600 mb-6">
-          Xin lỗi, đã có lỗi không mong muốn. Vui lòng thử lại sau.
+          Entschuldigung, ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.
         </p>
         <div className="flex gap-3 justify-center">
           <Button onClick={reset}>
             <RefreshCw className="mr-2 h-4 w-4" />
-            Thử lại
+            Erneut versuchen
           </Button>
           <Link href="/">
             <Button variant="outline">
               <Home className="mr-2 h-4 w-4" />
-              Về trang chủ
+              Zur Startseite
             </Button>
           </Link>
         </div>

@@ -5,8 +5,8 @@ import LoginForm from "@/components/auth/LoginForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Đăng nhập | ebook1eur",
-  description: "Đăng nhập vào tài khoản ebook1eur của bạn",
+  title: "Anmelden | ebook1eur",
+  description: "Melden Sie sich bei Ihrem ebook1eur-Konto an",
 };
 
 export default function LoginPage() {
@@ -18,7 +18,7 @@ export default function LoginPage() {
             <BookOpen className="h-8 w-8 text-leather-600" />
             <span className="text-2xl font-bold text-leather-800">ebook1eur</span>
           </Link>
-          <CardTitle className="text-xl">Đăng nhập</CardTitle>
+          <CardTitle className="text-xl">Anmelden</CardTitle>
         </CardHeader>
         <CardContent>
           <LoginForm />

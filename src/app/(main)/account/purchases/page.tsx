@@ -9,8 +9,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import PurchaseHistory from "@/components/account/PurchaseHistory";
 
 export const metadata: Metadata = {
-  title: "Lịch sử mua hàng | ebook1eur",
-  description: "Xem lịch sử mua sách của bạn",
+  title: "Kaufhistorie | ebook1eur",
+  description: "Sehen Sie Ihre Buchkaufhistorie",
 };
 
 export default async function PurchasesPage() {
@@ -28,12 +28,12 @@ export default async function PurchasesPage() {
           className="inline-flex items-center text-ink-600 hover:text-leather-700 mb-6"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Quay lại tài khoản
+          Zurück zum Konto
         </Link>
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-xl">Lịch sử mua hàng</CardTitle>
+            <CardTitle className="text-xl">Kaufhistorie</CardTitle>
           </CardHeader>
           <CardContent>
             <PurchaseHistory />

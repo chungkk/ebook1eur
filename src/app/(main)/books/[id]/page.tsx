@@ -66,7 +66,7 @@ export default async function BookDetailPage({ params }: PageProps) {
           className="inline-flex items-center text-ink-600 hover:text-leather-700 mb-6"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Quay lại danh sách
+          Zurück zur Liste
         </Link>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
@@ -91,12 +91,12 @@ export default async function BookDetailPage({ params }: PageProps) {
                 {isAudiobook ? (
                   <>
                     <Headphones className="h-4 w-4" />
-                    Sách nói
+                    Hörbuch
                   </>
                 ) : (
                   <>
                     <BookOpen className="h-4 w-4" />
-                    Ebook
+                    E-Book
                   </>
                 )}
               </span>
@@ -108,7 +108,7 @@ export default async function BookDetailPage({ params }: PageProps) {
             <h1 className="text-3xl md:text-4xl font-bold text-leather-900 mb-2">
               {book.title}
             </h1>
-            <p className="text-lg text-ink-600 mb-4">bởi {book.author}</p>
+            <p className="text-lg text-ink-600 mb-4">von {book.author}</p>
 
             {/* Meta Info */}
             <div className="flex flex-wrap gap-4 mb-6 text-sm text-ink-500">
@@ -149,7 +149,7 @@ export default async function BookDetailPage({ params }: PageProps) {
             {/* Description */}
             <div className="prose prose-stone max-w-none">
               <h2 className="text-xl font-semibold text-leather-800 mb-3">
-                Giới thiệu
+                Beschreibung
               </h2>
               <p className="text-ink-600 whitespace-pre-line leading-relaxed">
                 {book.description}

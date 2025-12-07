@@ -6,7 +6,7 @@ import BookForm from "@/components/admin/BookForm";
 import mongoose from "mongoose";
 
 export const metadata: Metadata = {
-  title: "Chỉnh sửa sách | Admin | ebook1eur",
+  title: "Buch bearbeiten | Admin | ebook1eur",
 };
 
 interface PageProps {
@@ -48,7 +48,7 @@ export default async function EditBookPage({ params }: PageProps) {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold text-leather-800">
-        Chỉnh sửa: {book.title}
+        Bearbeiten: {book.title}
       </h1>
       <BookForm book={book} mode="edit" />
     </div>

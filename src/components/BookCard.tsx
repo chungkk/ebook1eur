@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen, Headphones, Clock } from "lucide-react";
+import { BookOpen, Headphones, Clock, Wrench } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { formatPrice, formatDuration } from "@/lib/utils";
@@ -40,7 +40,7 @@ export default function BookCard({
             className="object-cover transition-transform group-hover:scale-105"
             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
           />
-          <div className="absolute top-2 right-2">
+          <div className="absolute top-2 right-2 flex flex-col gap-1">
             <span
               className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium ${
                 isAudiobook
@@ -51,15 +51,21 @@ export default function BookCard({
               {isAudiobook ? (
                 <>
                   <Headphones className="h-3 w-3" />
-                  Sách nói
+                  Hörbuch
                 </>
               ) : (
                 <>
                   <BookOpen className="h-3 w-3" />
-                  Ebook
+                  E-Book
                 </>
               )}
             </span>
+            {isAudiobook && (
+              <span className="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium bg-orange-500 text-white">
+                <Wrench className="h-3 w-3" />
+                In Wartung
+              </span>
+            )}
           </div>
         </div>
       </Link>
@@ -86,7 +92,7 @@ export default function BookCard({
           {formatPrice(price)}
         </span>
         <Link href={`/books/${id}`}>
-          <Button size="sm">Xem chi tiết</Button>
+          <Button size="sm">Details ansehen</Button>
         </Link>
       </CardFooter>
     </Card>

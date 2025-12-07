@@ -5,8 +5,8 @@ import {
   LayoutDashboard,
   BookOpen,
   Users,
-  Settings,
   ArrowLeft,
+  Globe,
 } from "lucide-react";
 
 export default async function AdminLayout({
@@ -28,11 +28,11 @@ export default async function AdminLayout({
           <div className="mb-8">
             <Link href="/" className="flex items-center gap-2 text-cream-50">
               <ArrowLeft className="h-4 w-4" />
-              <span className="text-sm">Quay lại trang chủ</span>
+              <span className="text-sm">Zur Startseite</span>
             </Link>
           </div>
 
-          <h2 className="text-lg font-bold mb-6">Admin Panel</h2>
+          <h2 className="text-lg font-bold mb-6">Admin-Bereich</h2>
 
           <nav className="space-y-2">
             <Link
@@ -40,21 +40,28 @@ export default async function AdminLayout({
               className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-leather-700 transition-colors"
             >
               <LayoutDashboard className="h-5 w-5" />
-              Dashboard
+              Übersicht
             </Link>
             <Link
               href="/admin/books"
               className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-leather-700 transition-colors"
             >
               <BookOpen className="h-5 w-5" />
-              Quản lý sách
+              Bücherverwaltung
             </Link>
             <Link
               href="/admin/users"
               className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-leather-700 transition-colors"
             >
               <Users className="h-5 w-5" />
-              Quản lý user
+              Benutzerverwaltung
+            </Link>
+            <Link
+              href="/admin/crawl"
+              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-leather-700 transition-colors"
+            >
+              <Globe className="h-5 w-5" />
+              Bestseller Crawler
             </Link>
           </nav>
         </aside>

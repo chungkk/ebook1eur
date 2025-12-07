@@ -5,8 +5,8 @@ import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Quên mật khẩu | ebook1eur",
-  description: "Đặt lại mật khẩu tài khoản ebook1eur của bạn",
+  title: "Passwort vergessen | ebook1eur",
+  description: "Setzen Sie Ihr ebook1eur-Kontopasswort zurück",
 };
 
 export default function ForgotPasswordPage() {
@@ -18,7 +18,7 @@ export default function ForgotPasswordPage() {
             <BookOpen className="h-8 w-8 text-leather-600" />
             <span className="text-2xl font-bold text-leather-800">ebook1eur</span>
           </Link>
-          <CardTitle className="text-xl">Quên mật khẩu</CardTitle>
+          <CardTitle className="text-xl">Passwort vergessen</CardTitle>
         </CardHeader>
         <CardContent>
           <ForgotPasswordForm />

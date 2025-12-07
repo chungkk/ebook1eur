@@ -10,8 +10,8 @@ import PurchaseHistory from "@/components/account/PurchaseHistory";
 import ProfileForm from "@/components/account/ProfileForm";
 
 export const metadata: Metadata = {
-  title: "Tài khoản | ebook1eur",
-  description: "Quản lý tài khoản ebook1eur của bạn",
+  title: "Konto | ebook1eur",
+  description: "Verwalten Sie Ihr ebook1eur-Konto",
 };
 
 export default async function AccountPage() {
@@ -24,7 +24,7 @@ export default async function AccountPage() {
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-2xl font-bold text-leather-800 mb-6">Tài khoản</h1>
+        <h1 className="text-2xl font-bold text-leather-800 mb-6">Mein Konto</h1>
 
         <div className="grid gap-6">
           {/* Quota Section */}
@@ -32,7 +32,7 @@ export default async function AccountPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <ShoppingBag className="h-5 w-5" />
-                Hạn mức mua sách
+                Kaufkontingent
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -45,7 +45,7 @@ export default async function AccountPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <ShoppingBag className="h-5 w-5" />
-                Sách đã mua gần đây
+                Kürzlich gekaufte Bücher
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -58,7 +58,7 @@ export default async function AccountPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Settings className="h-5 w-5" />
-                Thông tin tài khoản
+                Kontoinformationen
               </CardTitle>
             </CardHeader>
             <CardContent>

@@ -30,13 +30,13 @@ function CheckoutSuccessContent() {
       const data = await response.json();
 
       if (!data.success) {
-        setError(data.error || "Không thể lấy thông tin tải xuống");
+        setError(data.error || "Download-Informationen konnten nicht abgerufen werden");
         return;
       }
 
       setDownloadInfo(data.data);
     } catch {
-      setError("Không thể kết nối đến server");
+      setError("Verbindung zum Server fehlgeschlagen");
     } finally {
       setLoading(false);
     }
@@ -74,13 +74,13 @@ function CheckoutSuccessContent() {
               <CheckCircle className="h-16 w-16 text-bookmark-green" />
             </div>
             <CardTitle className="text-2xl text-leather-800">
-              Thanh toán thành công!
+              Zahlung erfolgreich!
             </CardTitle>
           </CardHeader>
 
           <CardContent className="space-y-6">
             <p className="text-center text-ink-600">
-              Cảm ơn bạn đã mua sách. Bạn có thể tải sách ngay bây giờ.
+              Vielen Dank für Ihren Kauf. Sie können das Buch jetzt herunterladen.
             </p>
 
             {loading && (
@@ -103,7 +103,7 @@ function CheckoutSuccessContent() {
                     {downloadInfo.fileName}
                   </p>
                   <p className="text-sm text-ink-500 mt-1">
-                    Link tải sẽ hết hạn sau 24 giờ hoặc sau khi tải thành công
+                    Der Download-Link läuft nach 24 Stunden oder nach erfolgreichem Download ab
                   </p>
                 </div>
 
@@ -113,7 +113,7 @@ function CheckoutSuccessContent() {
                   onClick={handleDownload}
                 >
                   <Download className="mr-2 h-5 w-5" />
-                  Tải xuống ngay
+                  Jetzt herunterladen
                 </Button>
               </div>
             )}
@@ -122,18 +122,18 @@ function CheckoutSuccessContent() {
               <div className="text-center space-y-4">
                 <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
                   <p className="text-green-700">
-                    Đã bắt đầu tải xuống. Kiểm tra thư mục Downloads của bạn.
+                    Download gestartet. Überprüfen Sie Ihren Downloads-Ordner.
                   </p>
                 </div>
                 <p className="text-sm text-ink-500">
-                  Lưu ý: Link tải đã được sử dụng và không thể dùng lại.
+                  Hinweis: Der Download-Link wurde verwendet und kann nicht wiederverwendet werden.
                 </p>
               </div>
             )}
 
             {!token && !sessionId && (
               <div className="text-center text-ink-500">
-                <p>Thông tin thanh toán không hợp lệ.</p>
+                <p>Ungültige Zahlungsinformationen.</p>
               </div>
             )}
 
@@ -141,12 +141,12 @@ function CheckoutSuccessContent() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href="/account/purchases" className="flex-1">
                   <Button variant="outline" className="w-full">
-                    Xem lịch sử mua
+                    Kaufhistorie ansehen
                   </Button>
                 </Link>
                 <Link href="/books" className="flex-1">
                   <Button variant="ghost" className="w-full">
-                    Tiếp tục mua sắm
+                    Weiter einkaufen
                   </Button>
                 </Link>
               </div>

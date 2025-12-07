@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { CreditCard, Loader2 } from "lucide-react";
+import { CreditCard, Loader2, Wrench } from "lucide-react";
 import type { BookType } from "@/types";
 
 interface CheckoutButtonProps {
@@ -25,6 +25,25 @@ export default function CheckoutButton({
   const [loading, setLoading] = useState<"stripe" | "paypal" | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const isAudiobook = bookType === "audiobook";
+
+  // Audiobooks are under maintenance
+  if (isAudiobook) {
+    return (
+      <div className="space-y-4">
+        <div className="p-4 bg-orange-50 border border-orange-200 rounded-lg">
+          <div className="flex items-center gap-2 text-orange-700 font-medium mb-2">
+            <Wrench className="h-5 w-5" />
+            Hörbücher in Wartung
+          </div>
+          <p className="text-sm text-orange-600">
+            Der Kauf von Hörbüchern ist derzeit nicht verfügbar. Wir arbeiten daran, diesen Service bald wieder anzubieten.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   const handleStripeCheckout = async () => {
     if (status === "unauthenticated") {
       router.push(`/login?callbackUrl=/books/${bookId}`);
@@ -44,13 +63,13 @@ export default function CheckoutButton({
       const data = await response.json();
 
       if (!data.success) {
-        setError(data.error || "Có lỗi xảy ra");
+        setError(data.error || "Ein Fehler ist aufgetreten");
         return;
       }
 
       window.location.href = data.data.url;
     } catch {
-      setError("Không thể kết nối đến server");
+      setError("Verbindung zum Server fehlgeschlagen");
     } finally {
       setLoading(null);
     }
@@ -75,13 +94,13 @@ export default function CheckoutButton({
       const data = await response.json();
 
       if (!data.success) {
-        setError(data.error || "Có lỗi xảy ra");
+        setError(data.error || "Ein Fehler ist aufgetreten");
         return;
       }
 
       window.location.href = `https://www.sandbox.paypal.com/checkoutnow?token=${data.data.orderId}`;
     } catch {
-      setError("Không thể kết nối đến server");
+      setError("Verbindung zum Server fehlgeschlagen");
     } finally {
       setLoading(null);
     }
@@ -107,7 +126,7 @@ export default function CheckoutButton({
           ) : (
             <CreditCard className="mr-2 h-5 w-5" />
           )}
-          Thanh toán với Stripe
+          Mit Stripe bezahlen
         </Button>
 
         <Button
@@ -127,7 +146,7 @@ export default function CheckoutButton({
 
       {status === "unauthenticated" && (
         <p className="text-sm text-ink-500 text-center">
-          Bạn cần đăng nhập để mua sách
+          Bitte melden Sie sich an, um ein Buch zu kaufen
         </p>
       )}
     </div>

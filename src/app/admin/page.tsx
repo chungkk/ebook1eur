@@ -48,14 +48,14 @@ export default async function AdminDashboard() {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-2xl font-bold text-leather-800">Dashboard</h1>
+      <h1 className="text-2xl font-bold text-leather-800">Übersicht</h1>
 
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-ink-600">
-              Tổng sách
+              Bücher gesamt
             </CardTitle>
             <BookOpen className="h-4 w-4 text-bookmark-green" />
           </CardHeader>
@@ -69,7 +69,7 @@ export default async function AdminDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-ink-600">
-              Tổng user
+              Benutzer gesamt
             </CardTitle>
             <Users className="h-4 w-4 text-bookmark-blue" />
           </CardHeader>
@@ -83,7 +83,7 @@ export default async function AdminDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-ink-600">
-              Tổng đơn hàng
+              Bestellungen gesamt
             </CardTitle>
             <ShoppingBag className="h-4 w-4 text-leather-600" />
           </CardHeader>
@@ -97,7 +97,7 @@ export default async function AdminDashboard() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-ink-600">
-              Đơn tháng này
+              Diesen Monat
             </CardTitle>
             <TrendingUp className="h-4 w-4 text-bookmark-red" />
           </CardHeader>
@@ -112,7 +112,7 @@ export default async function AdminDashboard() {
       {/* Recent Books */}
       <Card>
         <CardHeader>
-          <CardTitle>Sách mới thêm gần đây</CardTitle>
+          <CardTitle>Kürzlich hinzugefügte Bücher</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -133,17 +133,17 @@ export default async function AdminDashboard() {
                         : "bg-bookmark-green/10 text-bookmark-green"
                     }`}
                   >
-                    {book.type === "audiobook" ? "Sách nói" : "Ebook"}
+                    {book.type === "audiobook" ? "Hörbuch" : "E-Book"}
                   </span>
                   <p className="text-xs text-ink-400 mt-1">
-                    {new Date(book.createdAt).toLocaleDateString("vi-VN")}
+                    {new Date(book.createdAt).toLocaleDateString("de-DE")}
                   </p>
                 </div>
               </div>
             ))}
 
             {stats.recentBooks.length === 0 && (
-              <p className="text-center text-ink-500 py-4">Chưa có sách nào</p>
+              <p className="text-center text-ink-500 py-4">Noch keine Bücher vorhanden</p>
             )}
           </div>
         </CardContent>

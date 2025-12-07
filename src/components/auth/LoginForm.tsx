@@ -30,13 +30,13 @@ export default function LoginForm() {
       });
 
       if (result?.error) {
-        setError("Email hoặc mật khẩu không đúng");
+        setError("E-Mail oder Passwort ist falsch");
       } else {
         router.push("/books");
         router.refresh();
       }
     } catch {
-      setError("Đã có lỗi xảy ra, vui lòng thử lại");
+      setError("Ein Fehler ist aufgetreten, bitte versuchen Sie es erneut");
     } finally {
       setLoading(false);
     }
@@ -51,11 +51,11 @@ export default function LoginForm() {
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">E-Mail</Label>
         <Input
           id="email"
           type="email"
-          placeholder="email@example.com"
+          placeholder="email@beispiel.de"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -65,12 +65,12 @@ export default function LoginForm() {
 
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <Label htmlFor="password">Mật khẩu</Label>
+          <Label htmlFor="password">Passwort</Label>
           <Link
             href="/forgot-password"
             className="text-sm text-leather-600 hover:text-leather-700"
           >
-            Quên mật khẩu?
+            Passwort vergessen?
           </Link>
         </div>
         <div className="relative">
@@ -97,17 +97,17 @@ export default function LoginForm() {
         {loading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Đang đăng nhập...
+            Anmeldung läuft...
           </>
         ) : (
-          "Đăng nhập"
+          "Anmelden"
         )}
       </Button>
 
       <p className="text-center text-sm text-ink-600">
-        Chưa có tài khoản?{" "}
+        Noch kein Konto?{" "}
         <Link href="/register" className="text-leather-600 hover:text-leather-700 font-medium">
-          Đăng ký ngay
+          Jetzt registrieren
         </Link>
       </p>
     </form>

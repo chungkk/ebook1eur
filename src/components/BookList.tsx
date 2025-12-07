@@ -61,7 +61,7 @@ export default function BookList({
       setBooks(append ? [...books, ...newBooks] : newBooks);
       setHasMore(pageNum < data.data.pagination.totalPages);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Đã có lỗi xảy ra");
+      setError(err instanceof Error ? err.message : "Ein Fehler ist aufgetreten");
     } finally {
       setLoading(false);
     }
@@ -88,7 +88,7 @@ export default function BookList({
           className="mt-4"
           onClick={() => fetchBooks(1)}
         >
-          Thử lại
+          Erneut versuchen
         </Button>
       </div>
     );
@@ -97,7 +97,7 @@ export default function BookList({
   if (books.length === 0 && !loading) {
     return (
       <div className="text-center py-12">
-        <p className="text-ink-500">Chưa có sách nào</p>
+        <p className="text-ink-500">Noch keine Bücher vorhanden</p>
       </div>
     );
   }
@@ -130,10 +130,10 @@ export default function BookList({
             {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Đang tải...
+                Wird geladen...
               </>
             ) : (
-              "Xem thêm"
+              "Mehr anzeigen"
             )}
           </Button>
         </div>

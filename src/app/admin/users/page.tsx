@@ -7,7 +7,7 @@ import AdminUserList from "@/components/admin/AdminUserList";
 export default function AdminUsersPage() {
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-leather-800">Quản lý user</h1>
+      <h1 className="text-2xl font-bold text-leather-800">Benutzerverwaltung</h1>
 
       <Suspense
         fallback={
