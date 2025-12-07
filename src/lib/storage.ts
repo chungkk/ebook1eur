@@ -28,10 +28,21 @@ async function getBucket() {
     if (!bucketName) {
       throw new Error("GCS_BUCKET_NAME is not defined");
     }
-    const storage = new Storage({
+
+    // Support both key file (local dev) and JSON credentials (Vercel)
+    const storageOptions: import("@google-cloud/storage").StorageOptions = {
       projectId: process.env.GCS_PROJECT_ID,
-      keyFilename: process.env.GCS_KEY_FILE,
-    });
+    };
+
+    if (process.env.GCS_CREDENTIALS) {
+      // For Vercel: use JSON credentials from env
+      storageOptions.credentials = JSON.parse(process.env.GCS_CREDENTIALS);
+    } else if (process.env.GCS_KEY_FILE) {
+      // For local dev: use key file path
+      storageOptions.keyFilename = process.env.GCS_KEY_FILE;
+    }
+
+    const storage = new Storage(storageOptions);
     bucket = storage.bucket(bucketName);
   }
   return bucket;

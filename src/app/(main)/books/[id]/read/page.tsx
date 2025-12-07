@@ -24,6 +24,7 @@ export default function ReadBookPage() {
   const params = useParams();
   const router = useRouter();
   const [book, setBook] = useState<BookInfo | null>(null);
+  const [epubData, setEpubData] = useState<ArrayBuffer | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,6 +33,7 @@ export default function ReadBookPage() {
   useEffect(() => {
     async function fetchBook() {
       try {
+        // Fetch book info
         const res = await fetch(`/api/books/${bookId}`);
         if (!res.ok) {
           throw new Error("Book not found");
@@ -45,8 +47,17 @@ export default function ReadBookPage() {
         }
         
         setBook(data);
-      } catch {
-        setError("Không tìm thấy sách");
+        
+        // Fetch epub file as ArrayBuffer
+        const fileRes = await fetch(`/api/books/${bookId}/file`);
+        if (!fileRes.ok) {
+          throw new Error("Failed to load book file");
+        }
+        const arrayBuffer = await fileRes.arrayBuffer();
+        setEpubData(arrayBuffer);
+      } catch (err) {
+        console.error("Error loading book:", err);
+        setError("Không tìm thấy sách hoặc không thể tải file");
       } finally {
         setLoading(false);
       }
@@ -65,11 +76,12 @@ export default function ReadBookPage() {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white">
         <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+        <span className="ml-2 text-gray-500">Đang tải sách...</span>
       </div>
     );
   }
 
-  if (error || !book) {
+  if (error || !book || !epubData) {
     return (
       <div className="fixed inset-0 flex flex-col items-center justify-center bg-white">
         <p className="text-red-500 mb-4">{error || "Không tìm thấy sách"}</p>
@@ -85,7 +97,7 @@ export default function ReadBookPage() {
 
   return (
     <EpubReader
-      url={`/api/books/${bookId}/file`}
+      url={epubData}
       title={book.title}
       onClose={handleClose}
     />

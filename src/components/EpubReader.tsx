@@ -6,7 +6,7 @@ import type { Contents, Rendition } from "epubjs";
 import { Sun, Moon, Minus, Plus, X, Menu } from "lucide-react";
 
 interface EpubReaderProps {
-  url: string;
+  url: string | ArrayBuffer;
   title: string;
   onClose?: () => void;
 }
@@ -36,30 +36,40 @@ const themes: Record<Theme, { body: Record<string, string> }> = {
 
 const STORAGE_KEY_PREFIX = "epub-reader-location-";
 
+interface PageInfo {
+  current: number;
+  total: number;
+  percentage: number;
+}
+
 export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
   const [location, setLocation] = useState<string | number>(0);
   const [fontSize, setFontSize] = useState(100);
   const [theme, setTheme] = useState<Theme>("light");
   const [showToc, setShowToc] = useState(false);
   const [rendition, setRendition] = useState<Rendition | null>(null);
+  const [pageInfo, setPageInfo] = useState<PageInfo | null>(null);
+
+  // Use title as storage key since url might be ArrayBuffer
+  const storageKey = STORAGE_KEY_PREFIX + title;
 
   const locationChanged = useCallback(
     (epubcfi: string) => {
       setLocation(epubcfi);
       // Save location to localStorage
-      if (typeof window !== "undefined" && url) {
-        localStorage.setItem(STORAGE_KEY_PREFIX + url, epubcfi);
+      if (typeof window !== "undefined" && title) {
+        localStorage.setItem(storageKey, epubcfi);
       }
     },
-    [url]
+    [title, storageKey]
   );
 
   const getStoredLocation = useCallback(() => {
-    if (typeof window !== "undefined" && url) {
-      return localStorage.getItem(STORAGE_KEY_PREFIX + url);
+    if (typeof window !== "undefined" && title) {
+      return localStorage.getItem(storageKey);
     }
     return null;
-  }, [url]);
+  }, [title, storageKey]);
 
   const handleRendition = useCallback(
     (rend: Rendition) => {
@@ -80,9 +90,40 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
         rend.display(saved);
       }
 
-      // Handle content loaded
-      rend.on("relocated", (loc: { start: { cfi: string } }) => {
+      // Handle content loaded and page tracking
+      rend.on("relocated", (loc: { 
+        start: { cfi: string; displayed: { page: number; total: number } }; 
+        atEnd: boolean;
+        atStart: boolean;
+      }) => {
         setLocation(loc.start.cfi);
+        
+        // Update page info
+        const book = rend.book;
+        if (book.locations.length() > 0) {
+          const currentLocation = book.locations.locationFromCfi(loc.start.cfi) as unknown as number;
+          const totalLocations = book.locations.length();
+          const percentage = Math.round((currentLocation / totalLocations) * 100);
+          setPageInfo({
+            current: currentLocation + 1,
+            total: totalLocations,
+            percentage: isNaN(percentage) ? 0 : percentage,
+          });
+        } else if (loc.start.displayed) {
+          // Fallback to displayed page info
+          setPageInfo({
+            current: loc.start.displayed.page,
+            total: loc.start.displayed.total,
+            percentage: Math.round((loc.start.displayed.page / loc.start.displayed.total) * 100),
+          });
+        }
+      });
+
+      // Generate locations for page tracking
+      rend.book.ready.then(() => {
+        rend.book.locations.generate(1024).then(() => {
+          // Locations generated, page info will be updated on next relocate
+        });
       });
     },
     [theme, fontSize, getStoredLocation]
@@ -246,6 +287,40 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
             manager: "continuous",
           }}
         />
+      </div>
+
+      {/* Footer with page info */}
+      <div
+        className={`flex items-center justify-center px-4 py-2 border-t ${
+          theme === "dark"
+            ? "border-gray-700 bg-gray-900"
+            : theme === "sepia"
+            ? "border-[#d4c4a8] bg-[#e8dcc8]"
+            : "border-gray-200 bg-gray-50"
+        }`}
+      >
+        {pageInfo ? (
+          <div className={`flex items-center gap-4 text-sm ${textColors[theme]}`}>
+            <span>
+              Trang {pageInfo.current} / {pageInfo.total}
+            </span>
+            <div className="flex items-center gap-2">
+              <div className={`w-32 h-1.5 rounded-full ${
+                theme === "dark" ? "bg-gray-700" : "bg-gray-200"
+              }`}>
+                <div 
+                  className="h-full rounded-full bg-blue-500 transition-all duration-300"
+                  style={{ width: `${pageInfo.percentage}%` }}
+                />
+              </div>
+              <span className="text-xs opacity-70">{pageInfo.percentage}%</span>
+            </div>
+          </div>
+        ) : (
+          <span className={`text-sm opacity-50 ${textColors[theme]}`}>
+            Đang tải...
+          </span>
+        )}
       </div>
     </div>
   );
