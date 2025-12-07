@@ -127,10 +127,10 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
         }
       });
 
-      // Generate locations - smaller value = more pages
-      // ~600 chars per page is typical for ebooks
+      // Generate locations - larger value = fewer pages (more realistic)
+      // ~1800 chars per page is closer to a real book page
       rend.book.ready.then(() => {
-        rend.book.locations.generate(600);
+        rend.book.locations.generate(1800);
       });
     },
     [theme, fontSize, getStoredLocation]
@@ -318,7 +318,7 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
         {pageInfo ? (
           <div className={`flex items-center gap-4 text-sm ${textColors[theme]}`}>
             <span>
-              {pageInfo.currentPage} / {pageInfo.totalPages}
+              Trang {pageInfo.currentPage} / {pageInfo.totalPages}
             </span>
             <div className="flex items-center gap-2">
               <div className={`w-24 h-1.5 rounded-full ${
