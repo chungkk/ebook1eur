@@ -7,6 +7,70 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
+// Try to fetch page content with anti-bot headers
+export async function fetchPageContent(url: string): Promise<string | null> {
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Language': 'de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+      },
+      next: { revalidate: 0 }
+    });
+    
+    if (!response.ok) {
+      console.error(`Fetch failed with status: ${response.status}`);
+      return null;
+    }
+    
+    const html = await response.text();
+    
+    // Check if we got blocked by security
+    if (html.includes('Security Check') || html.includes('myrasecurity') || html.length < 10000) {
+      console.error('Blocked by security check or content too short');
+      return null;
+    }
+    
+    return html;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    return null;
+  }
+}
+
+// Auto crawl from source
+export async function autoCrawl(sourceId: CrawlSource): Promise<CrawlResult | null> {
+  const sourceInfo = CRAWL_SOURCES[sourceId];
+  if (!sourceInfo) return null;
+  
+  console.log(`Auto-crawling ${sourceInfo.name} from ${sourceInfo.url}`);
+  
+  const html = await fetchPageContent(sourceInfo.url);
+  if (!html) {
+    console.error(`Failed to fetch content from ${sourceInfo.name}`);
+    return null;
+  }
+  
+  const books = parseContent(html, sourceId);
+  if (books.length === 0) {
+    console.error(`No books parsed from ${sourceInfo.name}`);
+    return null;
+  }
+  
+  const crawledAt = new Date().toISOString();
+  return {
+    source: `${sourceInfo.name} (auto)`,
+    sourceId,
+    crawledAt,
+    totalBooks: books.length,
+    books: books.map(b => ({ ...b, crawledAt }))
+  };
+}
+
 export type CrawlSource = 'ebook-de' | 'hugendubel';
 
 export interface CrawledBook {

@@ -55,6 +55,7 @@ export default function CrawlPage() {
   const [data, setData] = useState<CrawlData | null>(null);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
+  const [crawling, setCrawling] = useState(false);
   const [selectedSource, setSelectedSource] = useState<CrawlSourceId>("ebook-de");
   const [message, setMessage] = useState<{
     type: "success" | "error";
@@ -78,6 +79,42 @@ export default function CrawlPage() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleAutoCrawl = async () => {
+    setCrawling(true);
+    setMessage(null);
+
+    try {
+      const response = await fetch("/api/admin/crawl", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sourceId: selectedSource }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setMessage({
+          type: "success",
+          text: `Erfolgreich ${result.data.totalBooks} Bücher von ${data?.sources[selectedSource]?.name || selectedSource} gecrawlt!`,
+        });
+        fetchData();
+      } else {
+        setMessage({
+          type: "error",
+          text: result.error || "Auto-Crawl fehlgeschlagen",
+        });
+      }
+    } catch (error) {
+      console.error("Auto-crawl error:", error);
+      setMessage({
+        type: "error",
+        text: "Auto-Crawl fehlgeschlagen. Bitte laden Sie die HTML-Datei manuell hoch.",
+      });
+    } finally {
+      setCrawling(false);
+    }
+  };
 
   const handleFileUpload = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -143,11 +180,12 @@ export default function CrawlPage() {
         </h1>
         <Button
           variant="outline"
-          onClick={fetchData}
+          onClick={handleAutoCrawl}
+          disabled={crawling}
           className="flex items-center gap-2"
         >
-          <RefreshCw className="h-4 w-4" />
-          Aktualisieren
+          <RefreshCw className={`h-4 w-4 ${crawling ? "animate-spin" : ""}`} />
+          {crawling ? "Crawling..." : "Aktualisieren"}
         </Button>
       </div>
 
@@ -167,6 +205,26 @@ export default function CrawlPage() {
           </button>
         ))}
       </div>
+
+      {/* Last Updated Info */}
+      {currentSourceData?.crawledAt && (
+        <div className="flex items-center gap-2 text-sm text-ink-500 bg-parchment-50 px-4 py-2 rounded-lg">
+          <Clock className="h-4 w-4" />
+          <span>
+            Letzte Aktualisierung:{" "}
+            <strong className="text-leather-700">
+              {new Date(currentSourceData.crawledAt).toLocaleString("de-DE", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </strong>
+            {" "}({currentSourceData.totalBooks} Bücher)
+          </span>
+        </div>
+      )}
 
       {/* Message */}
       {message && (

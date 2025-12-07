@@ -5,6 +5,7 @@ import {
   getCrawlHistory,
   processManualUpload,
   saveCrawlResult,
+  autoCrawl,
   CRAWL_SOURCES,
   type CrawlSource,
 } from "@/lib/crawl";
@@ -50,6 +51,65 @@ export async function GET() {
     console.error("Error getting crawl status:", error);
     return NextResponse.json(
       { success: false, error: "Failed to get crawl status" },
+      { status: 500 }
+    );
+  }
+}
+
+// PUT: Auto-crawl from source website
+export async function PUT(request: NextRequest) {
+  try {
+    const session = await auth();
+
+    if (!session?.user || session.user.role !== "admin") {
+      return NextResponse.json(
+        { success: false, error: "Unauthorized" },
+        { status: 403 }
+      );
+    }
+
+    const body = await request.json();
+    const { sourceId } = body;
+
+    // Validate sourceId
+    const validSourceId: CrawlSource =
+      sourceId && (sourceId === "ebook-de" || sourceId === "hugendubel")
+        ? sourceId
+        : "ebook-de";
+
+    const result = await autoCrawl(validSourceId);
+
+    if (!result || result.books.length === 0) {
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "Auto-Crawl fehlgeschlagen. Die Website blockiert automatische Anfragen. Bitte laden Sie die HTML-Datei manuell hoch.",
+        },
+        { status: 400 }
+      );
+    }
+
+    const filename = saveCrawlResult(result);
+
+    return NextResponse.json({
+      success: true,
+      data: {
+        filename,
+        sourceId: validSourceId,
+        totalBooks: result.totalBooks,
+        crawledAt: result.crawledAt,
+        topBooks: result.books.slice(0, 5),
+      },
+    });
+  } catch (error) {
+    console.error("Error auto-crawling:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        error:
+          "Auto-Crawl fehlgeschlagen. Bitte laden Sie die HTML-Datei manuell hoch.",
+      },
       { status: 500 }
     );
   }
