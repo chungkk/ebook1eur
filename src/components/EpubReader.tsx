@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { ReactReader } from "react-reader";
 import type { Contents, Rendition } from "epubjs";
-import { Sun, Moon, Minus, Plus, X, Menu } from "lucide-react";
+import { Sun, Moon, Minus, Plus, X, Menu, Loader2 } from "lucide-react";
 
 interface EpubReaderProps {
   url: string | ArrayBuffer;
@@ -37,12 +37,14 @@ const themes: Record<Theme, { body: Record<string, string> }> = {
 const STORAGE_KEY_PREFIX = "epub-reader-location-";
 
 interface PageInfo {
-  current: number;
-  total: number;
+  currentPage: number;
+  totalPages: number;
   percentage: number;
+  chapterName?: string;
 }
 
 export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
+  const [mounted, setMounted] = useState(false);
   const [location, setLocation] = useState<string | number>(0);
   const [fontSize, setFontSize] = useState(100);
   const [theme, setTheme] = useState<Theme>("light");
@@ -52,6 +54,11 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
 
   // Use title as storage key since url might be ArrayBuffer
   const storageKey = STORAGE_KEY_PREFIX + title;
+
+  // Ensure component only renders on client to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const locationChanged = useCallback(
     (epubcfi: string) => {
@@ -98,32 +105,32 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
       }) => {
         setLocation(loc.start.cfi);
         
-        // Update page info
         const book = rend.book;
-        if (book.locations.length() > 0) {
+        const totalLocations = book.locations.length();
+        
+        if (totalLocations > 0) {
           const currentLocation = book.locations.locationFromCfi(loc.start.cfi) as unknown as number;
-          const totalLocations = book.locations.length();
           const percentage = Math.round((currentLocation / totalLocations) * 100);
           setPageInfo({
-            current: currentLocation + 1,
-            total: totalLocations,
+            currentPage: currentLocation + 1,
+            totalPages: totalLocations,
             percentage: isNaN(percentage) ? 0 : percentage,
           });
-        } else if (loc.start.displayed) {
-          // Fallback to displayed page info
+        } else {
+          // Fallback before locations are generated
+          const displayed = loc.start.displayed;
           setPageInfo({
-            current: loc.start.displayed.page,
-            total: loc.start.displayed.total,
-            percentage: Math.round((loc.start.displayed.page / loc.start.displayed.total) * 100),
+            currentPage: displayed?.page || 1,
+            totalPages: displayed?.total || 1,
+            percentage: 0,
           });
         }
       });
 
-      // Generate locations for page tracking
+      // Generate locations - smaller value = more pages
+      // ~600 chars per page is typical for ebooks
       rend.book.ready.then(() => {
-        rend.book.locations.generate(1024).then(() => {
-          // Locations generated, page info will be updated on next relocate
-        });
+        rend.book.locations.generate(600);
       });
     },
     [theme, fontSize, getStoredLocation]
@@ -155,6 +162,15 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
     dark: "text-gray-100",
     sepia: "text-[#5b4636]",
   };
+
+  // Show loading state until client-side mounted
+  if (!mounted) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+        <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+      </div>
+    );
+  }
 
   return (
     <div className={`fixed inset-0 z-50 flex flex-col ${bgColors[theme]}`}>
@@ -302,10 +318,10 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
         {pageInfo ? (
           <div className={`flex items-center gap-4 text-sm ${textColors[theme]}`}>
             <span>
-              Trang {pageInfo.current} / {pageInfo.total}
+              {pageInfo.currentPage} / {pageInfo.totalPages}
             </span>
             <div className="flex items-center gap-2">
-              <div className={`w-32 h-1.5 rounded-full ${
+              <div className={`w-24 h-1.5 rounded-full ${
                 theme === "dark" ? "bg-gray-700" : "bg-gray-200"
               }`}>
                 <div 
