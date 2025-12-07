@@ -97,40 +97,44 @@ export default function EpubReader({ url, title, onClose }: EpubReaderProps) {
         rend.display(saved);
       }
 
-      // Handle content loaded and page tracking
-      rend.on("relocated", (loc: { 
-        start: { cfi: string; displayed: { page: number; total: number } }; 
-        atEnd: boolean;
-        atStart: boolean;
-      }) => {
-        setLocation(loc.start.cfi);
+      // Generate locations first, then handle page tracking
+      rend.book.ready.then(async () => {
+        // Generate fine-grained locations for accurate tracking
+        await rend.book.locations.generate(1024);
         
-        const book = rend.book;
-        const totalLocations = book.locations.length();
+        const totalLocations = rend.book.locations.length();
+        // Calculate a reasonable page count (~250-400 pages for most books)
+        // Normalize based on typical book having ~300 pages
+        const targetPagesPerBook = Math.max(100, Math.min(500, Math.round(totalLocations / 3)));
         
-        if (totalLocations > 0) {
-          const currentLocation = book.locations.locationFromCfi(loc.start.cfi) as unknown as number;
-          const percentage = Math.round((currentLocation / totalLocations) * 100);
+        // Handle page tracking after locations are ready
+        rend.on("relocated", (loc: { 
+          start: { cfi: string; displayed: { page: number; total: number } }; 
+          atEnd: boolean;
+          atStart: boolean;
+        }) => {
+          setLocation(loc.start.cfi);
+          
+          const currentLocation = rend.book.locations.locationFromCfi(loc.start.cfi) as unknown as number;
+          const percentage = totalLocations > 0 
+            ? Math.round((currentLocation / totalLocations) * 100) 
+            : 0;
+          
+          // Calculate normalized page number
+          const currentPage = Math.max(1, Math.round((currentLocation / totalLocations) * targetPagesPerBook));
+          
           setPageInfo({
-            currentPage: currentLocation + 1,
-            totalPages: totalLocations,
+            currentPage: Math.min(currentPage, targetPagesPerBook),
+            totalPages: targetPagesPerBook,
             percentage: isNaN(percentage) ? 0 : percentage,
           });
-        } else {
-          // Fallback before locations are generated
-          const displayed = loc.start.displayed;
-          setPageInfo({
-            currentPage: displayed?.page || 1,
-            totalPages: displayed?.total || 1,
-            percentage: 0,
-          });
+        });
+        
+        // Trigger initial relocated event
+        const currentLoc = rend.currentLocation();
+        if (currentLoc) {
+          rend.display(currentLoc.start.cfi);
         }
-      });
-
-      // Generate locations - larger value = fewer pages (more realistic)
-      // ~1800 chars per page is closer to a real book page
-      rend.book.ready.then(() => {
-        rend.book.locations.generate(1800);
       });
     },
     [theme, fontSize, getStoredLocation]
